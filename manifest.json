@@ -1,0 +1,17 @@
+{
+  "name": "Football Society",
+  "short_name": "FS",
+  "description": "Juega fútbol cuando quieras. Sin organizar nada.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "logo-fs.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
