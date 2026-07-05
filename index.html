@@ -14,6 +14,7 @@
   <meta property="og:image" content="https://ikgarcinuno19-glitch.github.io/Football-society/logo-fs.png">
   <meta property="og:url" content="https://ikgarcinuno19-glitch.github.io/Football-society/">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&auto=format&q=80" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
       --sup-3: #242424;
       --texto: #F2F2F2;
       --texto-suave: #999999;
-      --texto-muted: #4A4A4A;
+      --texto-muted: #7A7A7A;
       --borde: rgba(255,255,255,0.07);
       --borde-fuerte: rgba(255,255,255,0.13);
       --radio: 12px;
@@ -47,6 +48,9 @@
     button { cursor: pointer; border: none; font-family: inherit; outline: none; }
     input,textarea { font-family: inherit; outline: none; }
     ul { list-style: none; }
+    /* Accesibilidad: foco visible por teclado (no aparece al hacer click con ratón) */
+    :focus-visible { outline: 2px solid var(--dorado); outline-offset: 3px; border-radius: 6px; }
+    input:focus-visible, textarea:focus-visible { outline: none; }
 
     /* ==================== TIPOGRAFÍA ==================== */
     .etiqueta { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--verde); display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
@@ -147,9 +151,10 @@
     .hero {
       min-height: 100vh;
       min-height: 100svh;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 60px 240px;
+      display: grid;
+      grid-template-rows: 64px 1fr auto;   /* navbar reservado / espacio / contenido */
+      align-content: end;
+      padding: 0 clamp(20px, 5vw, 60px) clamp(56px, 10vh, 120px);
       position: relative;
       overflow: hidden;
     }
@@ -171,8 +176,16 @@
     }
     .hero-contenido {
       position: relative; z-index: 1;
+      grid-row: 3;
       text-align: left;
       max-width: 860px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,0.82);
+      max-width: 520px;
+      margin: -16px 0 32px;
+      line-height: 1.55;
     }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 7px;
@@ -1184,6 +1197,7 @@
         <span class="acento">Cuando</span><br>
         quieras.
       </h1>
+      <p class="hero-sub">Apúntate a partidos sueltos en Bilbao y Laredo. Sin equipo, sin grupos de WhatsApp. Pagas por ficha y juegas.</p>
       <div class="hero-ctas">
         <button class="btn btn-dorado btn-lg" onclick="abrirModal()">
           Empieza a jugar
@@ -1398,7 +1412,7 @@
     <div class="campos-grid">
 
       <div class="campo-card">
-        <div class="bg" style="background-image:url('https://imgur.com/YNUdeZF.jpg')"></div>
+        <div class="bg" style="background-image:url('https://i.imgur.com/YNUdeZF.jpeg')"></div>
         <div class="ov"></div>
         <div class="txt">
           <div class="campo-tipo">
@@ -2054,7 +2068,7 @@
     // Imágenes de fondo por ciudad
     const imgCiudad = {
       'Bilbao': 'https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=600&auto=format&q=75',
-      'Laredo': 'https://imgur.com/YNUdeZF.jpg',
+      'Laredo': 'https://i.imgur.com/YNUdeZF.jpeg',
     };
 
     // Definición de badges
