@@ -3033,7 +3033,7 @@
 
     function compartirWhatsApp() {
       const codigo = codigoRef(app.usuario.nombre);
-      const txt = encodeURIComponent(`¡Ven a jugar al fútbol conmigo! Úsate mi código ${codigo} en Football Society y los dos recibimos 1 ficha gratis 👉 football-society.es`);
+      const txt = encodeURIComponent(`Ven a jugar al futbol conmigo! Usa mi codigo ${codigo} en Football Society y los dos recibimos 1 ficha gratis\n\nhttps://ikgarcinuno19-glitch.github.io/Football-society/`);
       window.open(`https://wa.me/?text=${txt}`, '_blank');
     }
 
@@ -3282,7 +3282,7 @@
       const p = app.partidos.find(x => x.id === id);
       if (!p) return;
       const libres = p.total - p.ocupadas;
-      const txt = `Partido FS en ${p.campo} (${p.ciudad})\n${p.dia} a las ${p.hora} · ${p.formato}\n${libres} plaza${libres !== 1 ? 's' : ''} libre${libres !== 1 ? 's' : ''} — apúntate en Football Society!`;
+      const txt = `Partido FS en ${p.campo} (${p.ciudad})\n${p.dia} a las ${p.hora} · ${p.formato}\n${libres} plaza${libres !== 1 ? 's' : ''} libre${libres !== 1 ? 's' : ''}\n\nhttps://ikgarcinuno19-glitch.github.io/Football-society/`;
       window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`, '_blank');
     }
 
