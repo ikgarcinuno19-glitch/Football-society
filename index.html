@@ -1800,45 +1800,60 @@
   </div>
 
 
-  <!-- ==================== MODAL SIN FICHAS ==================== -->
-  <div class="modal-capa" id="modalSinFichas" onclick="cerrarSiFondo(event,'modalSinFichas')">
+  <!-- ==================== MODAL METODO DE PAGO ==================== -->
+  <div class="modal-capa" id="modalPago" onclick="cerrarSiFondo(event,'modalPago')">
     <div class="modal modal-sm">
       <div class="modal-cabecera">
         <div>
-          <div class="modal-titulo-texto">Sin fichas disponibles</div>
-          <div class="modal-subtitulo-texto" id="sfSubtitulo">Necesitas 1 ficha para apuntarte</div>
+          <div class="modal-titulo-texto" id="pagoTitulo">Reservar plaza</div>
+          <div class="modal-subtitulo-texto" id="pagoSubtitulo"></div>
         </div>
-        <button class="btn-cerrar" onclick="cerrarModalSinFichas()">✕</button>
+        <button class="btn-cerrar" onclick="cerrarModalPago()">&#10005;</button>
       </div>
       <div class="modal-cuerpo">
-        <p style="font-size:0.84rem;color:var(--texto-suave);margin-bottom:22px;line-height:1.6;">
-          Compra una ficha suelta o hazte con un pack para jugar más por menos.
+        <p style="font-size:0.84rem;color:var(--texto-suave);margin-bottom:20px;line-height:1.6;">
+          Elige como quieres pagar:
         </p>
 
-        <!-- Packs rápidos -->
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
-          <button class="sf-pack" onclick="comprarPack(1,5,'1 ficha suelta','pack1')">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <!-- Tarjeta / Apple Pay vía Stripe -->
+          <button class="sf-pack sf-pack-destacado" id="btnPagoStripe" onclick="pagarConStripe()" style="cursor:pointer;">
             <div class="sf-pack-info">
-              <span class="sf-pack-nombre">1 ficha</span>
-              <span class="sf-pack-desc">Sin caducidad</span>
+              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Tarjeta / Apple Pay
+              </span>
+              <span class="sf-pack-desc">Pago seguro con Stripe</span>
             </div>
-            <span class="sf-pack-precio">5 €</span>
+            <span class="sf-pack-precio" id="pagoPrecioStripe">2 &#8364;</span>
           </button>
-          <button class="sf-pack sf-pack-destacado" onclick="comprarPack(5,22,'Pack 5 fichas','pack5')">
+
+          <!-- Bizum -->
+          <button class="sf-pack" id="btnPagoBizum" onclick="pagarConBizum()" style="cursor:pointer;">
             <div class="sf-pack-info">
-              <span class="sf-pack-nombre">Pack 5 fichas</span>
-              <span class="sf-pack-desc">Ahorras 3 € · 4,40 €/ficha</span>
+              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Bizum
+              </span>
+              <span class="sf-pack-desc">Al 688 73 71 79</span>
             </div>
-            <span class="sf-pack-precio">22 €</span>
+            <span class="sf-pack-precio" id="pagoPrecioBizum">2 &#8364;</span>
           </button>
         </div>
 
-        <div style="text-align:center;">
-          <button class="btn btn-ghost" onclick="cerrarModalSinFichas();location.hash='creditos'"
-            style="font-size:0.78rem;color:var(--texto-suave);">
-            Ver membresías y más opciones →
-          </button>
+        <!-- Instrucciones Bizum (ocultas por defecto) -->
+        <div id="instruccionesBizum" style="display:none;margin-top:20px;padding:20px;background:var(--sup-1);border-radius:12px;border:1px solid var(--borde);">
+          <p style="font-size:0.9rem;font-weight:600;margin-bottom:12px;">Envia Bizum a:</p>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <span style="font-size:1.3rem;font-weight:700;letter-spacing:1px;" id="bizumTelefono">688 73 71 79</span>
+            <button class="btn btn-ghost" onclick="copiarBizum()" style="font-size:0.75rem;padding:4px 10px;">Copiar</button>
+          </div>
+          <p style="font-size:0.82rem;color:var(--texto-suave);line-height:1.5;margin-bottom:16px;">
+            Pon tu nombre de FS en el concepto. Una vez enviado, pulsa confirmar.
+          </p>
+          <button class="btn btn-verde" onclick="confirmarBizum()" style="width:100%;">Ya he enviado el Bizum</button>
         </div>
+
       </div>
     </div>
   </div>
@@ -2325,6 +2340,8 @@
     }
 
     /* ==================== RESERVA CON PAGO DIRECTO ==================== */
+    let _pagoPartidoId = null;
+
     function apuntarseConCredito(id) {
       const p = app.partidos.find(x => x.id === id);
       if (!p || p.apuntado || p.ocupadas >= p.total) return;
@@ -2334,38 +2351,71 @@
         return;
       }
 
-      localStorage.setItem('fs_reserva_pendiente', JSON.stringify({
-        partidoId: id,
-        userId: app.usuario.id
-      }));
-
-      const link = FS_CONFIG.stripe.paymentLinks.pack;
-      window.location.href = link;
-    }
-
-    function abrirModalSinFichas(idPartido) {
-      const p = idPartido ? app.partidos.find(x => x.id === idPartido) : null;
-      const subtitulo = p ? `${p.ciudad} · ${p.dia} · ${p.hora}` : 'Consigue fichas para jugar';
-      document.getElementById('sfSubtitulo').textContent = subtitulo;
-      document.getElementById('modalSinFichas').classList.add('visible');
+      _pagoPartidoId = id;
+      document.getElementById('pagoSubtitulo').textContent = `${p.ciudad} · ${p.dia} · ${p.hora} · ${p.precio}€`;
+      document.getElementById('pagoPrecioStripe').textContent = `${p.precio} €`;
+      document.getElementById('pagoPrecioBizum').textContent = `${p.precio} €`;
+      document.getElementById('instruccionesBizum').style.display = 'none';
+      document.getElementById('modalPago').classList.add('visible');
       document.body.style.overflow = 'hidden';
     }
 
-    function cerrarModalSinFichas() {
-      document.getElementById('modalSinFichas').classList.remove('visible');
+    function cerrarModalPago() {
+      document.getElementById('modalPago').classList.remove('visible');
       document.body.style.overflow = '';
+      _pagoPartidoId = null;
+    }
+
+    function pagarConStripe() {
+      if (!_pagoPartidoId) return;
+      localStorage.setItem('fs_reserva_pendiente', JSON.stringify({
+        partidoId: _pagoPartidoId,
+        userId: app.usuario.id
+      }));
+      window.location.href = FS_CONFIG.stripe.paymentLinks.pack;
+    }
+
+    function pagarConBizum() {
+      document.getElementById('instruccionesBizum').style.display = 'block';
+    }
+
+    function copiarBizum() {
+      navigator.clipboard.writeText('688737179').catch(() => {});
+      mostrarToast(svgCheck, 'Copiado', '688 73 71 79');
+    }
+
+    async function confirmarBizum() {
+      if (!_pagoPartidoId || !app.usuario?.id) return;
+      const p = app.partidos.find(x => x.id === _pagoPartidoId);
+      if (!p) return;
+
+      p.apuntado = true;
+      p.ocupadas = Math.min(p.ocupadas + 1, p.total);
+      app.logros.partidosJugados += 1;
+      pintarPartidos();
+      pintarRanking();
+
+      if (FS_LIVE) {
+        const uid = app.usuario.id;
+        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: _pagoPartidoId });
+        await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', _pagoPartidoId);
+        await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
+      }
+
+      cerrarModalPago();
+      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Bizum enviado`);
     }
 
     async function comprarPack(fichas, precio, label, priceKey) {
       if (!app.registrado) { abrirModal(); return; }
       const resultado = await fsAPI.comprarPack(priceKey, fichas);
       if (resultado === 'stripe') {
-        cerrarModalSinFichas();
+        cerrarModalPago();
         return;
       }
       app.creditos += fichas;
       actualizarNavCreditos();
-      cerrarModalSinFichas();
+      cerrarModalPago();
       pintarPartidos();
       const svgCoins = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`;
       mostrarToast(svgCoins, `+${fichas} ficha${fichas > 1 ? 's' : ''} añadidas`, `${precio}€ · ${label} · Total: ${app.creditos}`);
@@ -2381,7 +2431,7 @@
       app.creditos += plan.fichas;
       actualizarNavCreditos();
       actualizarBotonesMem();
-      cerrarModalSinFichas();
+      cerrarModalPago();
       pintarPartidos();
       const svgStar = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
       mostrarToast(svgStar, `¡Membresía ${tipo} activada!`, `+${plan.fichas} fichas · ${plan.precio}€/mes · Total: ${app.creditos}`);
@@ -2408,7 +2458,7 @@
     function cerrarSiFondo(e, id) {
       if (e.target === document.getElementById(id)) {
         if (id === 'modalCapa')           cerrarModal();
-        else if (id === 'modalSinFichas') cerrarModalSinFichas();
+        else if (id === 'modalPago') cerrarModalPago();
       }
     }
 
@@ -3364,7 +3414,7 @@
       if (e.key !== 'Escape') return;
       cerrarPanelHamb();
       cerrarModal();
-      cerrarModalSinFichas();
+      cerrarModalPago();
       cerrarAmigos();
       cerrarLogros();
       cerrarNotif();
