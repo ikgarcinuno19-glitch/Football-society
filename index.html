@@ -1843,6 +1843,18 @@
             </div>
             <span class="sf-pack-precio" id="pagoPrecioBizum">2 &#8364;</span>
           </button>
+
+          <!-- Efectivo -->
+          <button class="sf-pack" id="btnPagoEfectivo" onclick="pagarEnEfectivo()" style="cursor:pointer;">
+            <div class="sf-pack-info">
+              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg>
+                Efectivo
+              </span>
+              <span class="sf-pack-desc">Pagas en el campo antes del partido</span>
+            </div>
+            <span class="sf-pack-precio" id="pagoPrecioEfectivo">2 &#8364;</span>
+          </button>
         </div>
 
         <!-- Instrucciones Bizum (ocultas por defecto) -->
@@ -2408,6 +2420,28 @@
 
       cerrarModalPago();
       mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Bizum enviado`);
+    }
+
+    async function pagarEnEfectivo() {
+      if (!_pagoPartidoId || !app.usuario?.id) return;
+      const p = app.partidos.find(x => x.id === _pagoPartidoId);
+      if (!p) return;
+
+      p.apuntado = true;
+      p.ocupadas = Math.min(p.ocupadas + 1, p.total);
+      app.logros.partidosJugados += 1;
+      pintarPartidos();
+      pintarRanking();
+
+      if (FS_LIVE) {
+        const uid = app.usuario.id;
+        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: _pagoPartidoId });
+        await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', _pagoPartidoId);
+        await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
+      }
+
+      cerrarModalPago();
+      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Pago en efectivo en el campo`);
     }
 
     async function comprarPack(fichas, precio, label, priceKey) {
@@ -3441,12 +3475,7 @@
     });
 
     function mostrarBannerApp() {
-      if (localStorage.getItem('fs_pwa_cerrado')) return;
-      if (window.matchMedia('(display-mode: standalone)').matches) return;
-      setTimeout(() => {
-        document.getElementById('pwaModal').classList.add('visible');
-        document.body.style.overflow = 'hidden';
-      }, 1500);
+      return;
     }
 
     function cerrarPwaModal() {
