@@ -1936,7 +1936,7 @@
       async register(datos) {
         if (!FS_LIVE) return null;
         const pass     = await hashPass(datos.contrasena);
-        const creditos = 99;
+        const creditos = 0;
         const ref      = codigoRef(datos.nombre);
         const { data, error } = await sb.from('usuarios').insert({
           nombre:        datos.nombre.trim(),
@@ -1970,20 +1970,13 @@
       },
 
       async reservarPlaza(partidoId) {
-        if (!FS_LIVE || !app.usuario?.id) return;
-        const uid = app.usuario.id;
-        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: partidoId });
-        await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', uid);
-        const p = app.partidos.find(x => x.id === partidoId);
-        if (p) await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', partidoId);
-        await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
+        // Reserva ahora se hace en comprobarRetornoStripe tras pagar
       },
 
       async cancelarInscripcion(partidoId) {
         if (!FS_LIVE || !app.usuario?.id) return;
         const uid = app.usuario.id;
         await sb.from('inscripciones').delete().eq('usuario_id', uid).eq('partido_id', partidoId);
-        await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', uid);
         const p = app.partidos.find(x => x.id === partidoId);
         if (p) await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', partidoId);
         await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
@@ -2331,28 +2324,23 @@
       pintarRanking();
     }
 
-    /* ==================== SISTEMA DE CRÉDITOS / FICHAS ==================== */
-    async function apuntarseConCredito(id) {
+    /* ==================== RESERVA CON PAGO DIRECTO ==================== */
+    function apuntarseConCredito(id) {
       const p = app.partidos.find(x => x.id === id);
       if (!p || p.apuntado || p.ocupadas >= p.total) return;
 
-      if (app.creditos < 1) {
-        abrirModalSinFichas(id);
+      if (!app.registrado || !app.usuario?.id) {
+        abrirModal();
         return;
       }
 
-      app.creditos -= 1;
-      p.apuntado   = true;
-      p.ocupadas   = Math.min(p.ocupadas + 1, p.total);
-      app.logros.partidosJugados += 1;
+      localStorage.setItem('fs_reserva_pendiente', JSON.stringify({
+        partidoId: id,
+        userId: app.usuario.id
+      }));
 
-      actualizarNavCreditos();
-      pintarPartidos();
-      pintarRanking();
-
-      await fsAPI.reservarPlaza(id);
-
-      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · ${p.precio}€`);
+      const link = FS_CONFIG.stripe.paymentLinks.pack;
+      window.location.href = link;
     }
 
     function abrirModalSinFichas(idPartido) {
@@ -2474,7 +2462,7 @@
 
         app.registrado = true;
         app.usuario    = { ...usuario };
-        app.creditos   = usuario.creditos  ?? 1;
+        app.creditos   = 0;
         app.membresia  = usuario.membresia !== 'none' ? usuario.membresia : null;
         app.logros     = { partidosJugados: logrosData.partidos_jugados ?? logrosData.partidosJugados ?? 0, mvps: logrosData.mvps ?? 0 };
 
@@ -2774,10 +2762,10 @@
         let usuarioGuardado;
         if (FS_LIVE) {
           usuarioGuardado = await fsAPI.register(app.datos);
-          app.creditos = usuarioGuardado.creditos ?? 1;
+          app.creditos = 0;
         } else {
           const codigoValido = /^FS-[A-Z]{2}\d{2}$/.test(app.datos.codigoRef.trim());
-          app.creditos = 99;
+          app.creditos = 0;
           const entradaUsuario = { ...app.datos, creditos: app.creditos, membresia: null };
           const existente = app.usuarios.findIndex(u => u.email.toLowerCase() === app.datos.email.toLowerCase());
           if (existente >= 0) app.usuarios[existente] = entradaUsuario;
@@ -2835,9 +2823,6 @@
       document.getElementById('navPerfil').style.display = 'flex';
       document.getElementById('btnNavRegistro').style.display = 'none';
 
-      // Mostrar saldo de créditos
-      actualizarNavCreditos();
-      document.getElementById('navCreditos').style.display = 'flex';
     }
 
     function actualizarNavCreditos() {
@@ -3004,13 +2989,11 @@
       if (!p || !p.apuntado) return;
       p.apuntado = false;
       p.ocupadas = Math.max(0, p.ocupadas - 1);
-      app.creditos++;
       app.logros.partidosJugados = Math.max(0, app.logros.partidosJugados - 1);
-      actualizarNavCreditos();
       pintarPartidos();
       renderPanelLogros();
       await fsAPI.cancelarInscripcion(id);
-      mostrarToast(`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>`, 'Cancelado', `+1 ficha devuelta · Total: ${app.creditos}`);
+      mostrarToast(`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>`, 'Cancelado', 'Plaza liberada');
     }
 
     function codigoRef(nombre) {
@@ -3331,7 +3314,7 @@
           const logrosData = data.logros?.[0] || { partidos_jugados: 0, mvps: 0 };
           app.registrado = true;
           app.usuario    = { ...data };
-          app.creditos   = data.creditos ?? 0;
+          app.creditos   = 0;
           app.membresia  = data.membresia !== 'none' ? data.membresia : null;
           app.logros     = { partidosJugados: logrosData.partidos_jugados ?? 0, mvps: logrosData.mvps ?? 0 };
           const ps = await fsAPI.getPartidos(data.id);
@@ -3339,7 +3322,7 @@
         } else {
           app.registrado = true;
           app.usuario    = saved;
-          app.creditos   = 1;
+          app.creditos   = 0;
           app.logros     = { partidosJugados: 0, mvps: 0 };
         }
         actualizarNavbar();
@@ -3353,11 +3336,7 @@
     /* ==================== CERRAR SESIÓN ==================== */
     async function cerrarSesion() {
       if (app.usuario?.id && FS_LIVE) {
-        await sb.from('usuarios').update({ creditos: app.creditos, membresia: app.membresia || 'none' }).eq('id', app.usuario.id);
         await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, mvps: app.logros.mvps, updated_at: new Date().toISOString() }).eq('usuario_id', app.usuario.id);
-      } else if (app.usuario) {
-        const idx = app.usuarios.findIndex(u => u.email.toLowerCase() === app.usuario.email.toLowerCase());
-        if (idx >= 0) app.usuarios[idx] = { ...app.usuarios[idx], creditos: app.creditos, membresia: app.membresia, logros: { ...app.logros } };
       }
 
       localStorage.removeItem('fs_sesion');
@@ -3473,20 +3452,31 @@
     window.addEventListener('hashchange', manejarHash);
 
     async function comprobarRetornoStripe() {
-      const pendiente = localStorage.getItem('fs_pago_pendiente');
+      const pendiente = localStorage.getItem('fs_reserva_pendiente');
       if (!pendiente) return;
-      localStorage.removeItem('fs_pago_pendiente');
+      localStorage.removeItem('fs_reserva_pendiente');
       try {
-        const { fichas, userId } = JSON.parse(pendiente);
-        if (FS_LIVE && userId) {
-          const { data } = await sb.from('usuarios').select('creditos').eq('id', userId).single();
-          if (data) {
-            const nuevos = (data.creditos || 0) + (fichas || 1);
-            await sb.from('usuarios').update({ creditos: nuevos }).eq('id', userId);
+        const { partidoId, userId } = JSON.parse(pendiente);
+        if (FS_LIVE && userId && partidoId) {
+          await sb.from('inscripciones').insert({ usuario_id: userId, partido_id: partidoId });
+          const { data: pData } = await sb.from('partidos').select('ocupadas').eq('id', partidoId).single();
+          if (pData) {
+            await sb.from('partidos').update({ ocupadas: (pData.ocupadas || 0) + 1 }).eq('id', partidoId);
+          }
+          const { data: lData } = await sb.from('logros').select('partidos_jugados').eq('usuario_id', userId).single();
+          if (lData) {
+            await sb.from('logros').update({ partidos_jugados: (lData.partidos_jugados || 0) + 1, updated_at: new Date().toISOString() }).eq('usuario_id', userId);
           }
         }
-        const svgCoins = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`;
-        mostrarToast(svgCoins, 'Pago recibido', `+${fichas || 1} ficha${(fichas||1) > 1 ? 's' : ''} añadida${(fichas||1) > 1 ? 's' : ''}`);
+        const p = app.partidos.find(x => x.id === partidoId);
+        if (p) {
+          p.apuntado = true;
+          p.ocupadas = Math.min(p.ocupadas + 1, p.total);
+          app.logros.partidosJugados += 1;
+          pintarPartidos();
+          pintarRanking();
+        }
+        mostrarToast(svgCheck, 'Plaza reservada', p ? `${p.ciudad} · ${p.dia} a las ${p.hora} · ${p.precio}€` : 'Pago confirmado');
       } catch(e) {}
     }
 
