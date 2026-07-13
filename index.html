@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Football Society – Juega cuando quieras. Sin organizar nada.</title>
-  <meta name="description" content="Fútbol amateur en el País Vasco. Apúntate a partidos en Bilbao y Laredo, paga por ficha y juega cuando quieras.">
+  <meta name="description" content="Fútbol amateur en el País Vasco. Apúntate a partidos en Bilbao y Laredo, desde 2€ por partido.">
   <meta name="theme-color" content="#080808">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="logo-fs.png">
@@ -1077,8 +1077,8 @@
     <!-- Derecha: créditos + perfil/login + Instagram + hamburguesa -->
     <div class="nav-der">
 
-      <!-- Saldo fichas (visible tras login) -->
-      <div class="nav-creditos" id="navCreditos" onclick="location.hash='creditos'">
+      <!-- Saldo fichas (oculto en MVP) -->
+      <div class="nav-creditos" id="navCreditos" onclick="location.hash='creditos'" style="display:none!important">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M8.5 9.5a3.5 3.5 0 0 1 7 0c0 2-3.5 3-3.5 5m0 0h.01"/></svg>
         <span id="saldoCreditos">0</span> ficha<span id="sufCreditos">s</span>
       </div>
@@ -1150,10 +1150,6 @@
       </button>
     </div>
     <nav class="panel-hamb-nav">
-      <a href="#creditos"     class="panel-hamb-item" onclick="cerrarPanelHamb()">
-        <span>Tarifas</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
       <a href="#torneos"      class="panel-hamb-item" onclick="cerrarPanelHamb()">
         <span>Torneos</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1197,7 +1193,7 @@
         <span class="acento">Cuando</span><br>
         quieras.
       </h1>
-      <p class="hero-sub">Apúntate a partidos sueltos en Bilbao y Laredo. Sin equipo, sin grupos de WhatsApp. Pagas por ficha y juegas.</p>
+      <p class="hero-sub">Apúntate a partidos sueltos en Bilbao y Laredo. Sin equipo, sin grupos de WhatsApp. Reservas, pagas y juegas.</p>
       <div class="hero-ctas">
         <button class="btn btn-dorado btn-lg" onclick="abrirModal()">
           Empieza a jugar
@@ -1282,7 +1278,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="paso-titulo">Regístrate gratis</div>
-          <div class="paso-desc">Crea tu perfil en menos de 2 minutos. Recibes una ficha gratis para tu primer partido.</div>
+          <div class="paso-desc">Crea tu perfil en menos de 2 minutos. Es gratis y te lleva un momento.</div>
         </div>
         <div class="paso-sep">→</div>
         <div class="paso-card">
@@ -1300,7 +1296,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <div class="paso-titulo">Paga y juega</div>
-          <div class="paso-desc">Desde 2 € por partido. Sin cuotas mensuales obligatorias. Cancela con 24 h y recuperas la ficha.</div>
+          <div class="paso-desc">Desde 2 € por partido. Sin cuotas ni compromisos. Cancela con 24 h de antelación.</div>
         </div>
       </div>
     </div>
@@ -1474,10 +1470,10 @@
 
       <details class="faq-item">
         <summary class="faq-q">
-          ¿Cómo funciona el sistema de fichas?
+          ¿Cuánto cuesta jugar?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Cada ficha equivale a un partido. La compras una vez y la usas cuando quieras, sin fecha de caducidad. Al registrarte te regalamos una ficha gratis para que pruebes sin compromiso.</p>
+        <p class="faq-r">Desde 2 € por partido. Te registras gratis, reservas tu plaza y pagas por partido. Sin cuotas ni compromisos.</p>
       </details>
 
       <details class="faq-item">
@@ -1493,15 +1489,15 @@
           ¿Puedo cancelar si no puedo ir?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Sí. Si cancelas con más de 24 horas de antelación, la ficha vuelve a tu cuenta. Con menos de 24 horas no se puede devolver porque el partido ya está organizado.</p>
+        <p class="faq-r">Sí. Si cancelas con más de 24 horas de antelación, sin problema. Con menos de 24 horas no se puede cancelar porque el partido ya está organizado.</p>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">
-          ¿Puedo compartir mis fichas con un amigo?
+          ¿Puedo traer a un amigo?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Las fichas son personales e intransferibles. Pero si traes un amigo nuevo y se registra con tu código de referido, los dos recibís una ficha gratis de regalo.</p>
+        <p class="faq-r">Por supuesto. Que se registre y reserve su plaza. Cada jugador necesita su propia cuenta para que podamos organizar los equipos.</p>
       </details>
 
       <details class="faq-item">
@@ -1509,7 +1505,7 @@
           ¿Qué pasa si llueve en Laredo?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Si el tiempo lo impide, avisamos con al menos 3 horas de antelación y devolvemos la ficha automáticamente. En Bilbao, el campo Etxezuri tiene cubierta parcial, así que rara vez se suspende.</p>
+        <p class="faq-r">Si el tiempo lo impide, avisamos con al menos 3 horas de antelación y se cancela sin coste. En Bilbao, el campo Etxezuri tiene cubierta parcial, así que rara vez se suspende.</p>
       </details>
 
       <details class="faq-item">
@@ -1530,10 +1526,10 @@
 
       <details class="faq-item">
         <summary class="faq-q">
-          ¿Qué diferencia hay entre membresía PRO y ROOKIE?
+          ¿Habrá mas partidos y ubicaciones?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">ROOKIE incluye 2 fichas/mes y el badge en el perfil. PRO incluye 5 fichas/mes, acceso prioritario a los partidos más demandados, descuentos en packs adicionales y estadísticas avanzadas. Si juegas más de dos veces al mes, PRO te sale a cuenta.</p>
+        <p class="faq-r">Estamos arrancando con Laredo y Bilbao. Si hay demanda, abriremos mas ciudades y horarios. Regístrate y nos ayudas a crecer.</p>
       </details>
 
     </div>
@@ -1759,7 +1755,7 @@
         <ul class="footer-links">
           <li><a href="#partidos">Ver partidos</a></li>
           <li><a href="#" onclick="abrirModal(); return false;">Registrarse</a></li>
-          <li><a href="#creditos">Tarifas</a></li>
+          <!-- Tarifas oculto en MVP -->
         </ul>
       </div>
       <div class="footer-col">
@@ -1940,7 +1936,7 @@
       async register(datos) {
         if (!FS_LIVE) return null;
         const pass     = await hashPass(datos.contrasena);
-        const creditos = /^FS-[A-Z]{2}\d{2}$/.test((datos.codigoRef || '').trim()) ? 2 : 1;
+        const creditos = 99;
         const ref      = codigoRef(datos.nombre);
         const { data, error } = await sb.from('usuarios').insert({
           nombre:        datos.nombre.trim(),
@@ -2170,7 +2166,7 @@
       } else if (lleno) {
         boton = `<button class="btn-unirse" style="background:var(--sup-3);border:1.5px solid var(--borde);color:var(--texto-muted);" disabled>Sin plazas</button>`;
       } else {
-        boton = `<button class="btn-unirse btn-verde" onclick="apuntarseConCredito('${p.id}')" style="display:flex;align-items:center;justify-content:center;gap:7px;">${svgFicha} Usar 1 ficha</button>`;
+        boton = `<button class="btn-unirse btn-verde" onclick="apuntarseConCredito('${p.id}')" style="display:flex;align-items:center;justify-content:center;gap:7px;">Reservar plaza · ${p.precio}€</button>`;
       }
 
       return `
@@ -2183,7 +2179,7 @@
             <div class="partido-hora">${p.hora}</div>
             <div class="partido-datos">
               <span class="dato">${p.formato}</span>
-              <span class="dato">${p.precio}€ / ficha</span>
+              <span class="dato">${p.precio}€</span>
             </div>
             <div class="plazas-fila">
               <span style="color:var(--texto-suave)">${p.ocupadas} de ${p.total} plazas</span>
@@ -2214,7 +2210,7 @@
           </div>
           <div class="card-body">
             <div class="partido-hora">${f.hora}</div>
-            <div class="partido-datos"><span class="dato">7v7</span><span class="dato">5€ / ficha</span></div>
+            <div class="partido-datos"><span class="dato">7v7</span><span class="dato">5€</span></div>
             <div class="plazas-fila"><span style="color:var(--texto-suave)">— de — plazas</span></div>
             <div class="barra"><div class="barra-fill" style="width:55%"></div></div>
             <button class="btn-unirse btn-verde" disabled>Apuntarme →</button>
@@ -2356,7 +2352,7 @@
 
       await fsAPI.reservarPlaza(id);
 
-      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Te quedan ${app.creditos} ficha${app.creditos !== 1 ? 's' : ''}`);
+      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · ${p.precio}€`);
     }
 
     function abrirModalSinFichas(idPartido) {
@@ -2725,7 +2721,7 @@
         <div class="bienvenida-wrap">
           ${fotoHtml}
           <h2>¡Bienvenido, ${esc(nombre)}!</h2>
-          <p>Tu perfil está listo. Te regalamos <strong style="color:var(--dorado)">${fichas} ficha${fichas > 1 ? 's' : ''} gratis</strong> para tu primer partido.</p>
+          <p>Tu perfil está listo. Ya puedes <strong style="color:var(--dorado)">reservar tu plaza</strong> en los partidos disponibles.</p>
           <div class="resumen-perfil">
             <div class="resumen-fila"><span>Posición</span><span>${esc(d.posicion)}</span></div>
             <div class="resumen-fila"><span>Nivel</span><span>${esc(d.nivel)}</span></div>
@@ -2735,8 +2731,8 @@
           <div style="background:rgba(212,168,42,0.08);border:1px solid rgba(212,168,42,0.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
             <div>
-              <div style="font-size:0.82rem;font-weight:700;color:var(--dorado)">${fichas} ficha${fichas > 1 ? 's' : ''} de bienvenida${codigoOk ? ' · código válido' : ''}</div>
-              <div style="font-size:0.74rem;color:var(--texto-suave)">${codigoOk ? '+1 ficha extra por código de invitación' : 'Se añade automáticamente a tu cuenta'}</div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--dorado)">Cuenta creada${codigoOk ? ' · código válido' : ''}</div>
+              <div style="font-size:0.74rem;color:var(--texto-suave)">Reserva tu plaza y paga 2€ por partido</div>
             </div>
           </div>
           <button class="btn btn-dorado btn-lg btn-block btn-completar-registro" onclick="completarRegistro()">Ir a los partidos</button>
@@ -2781,7 +2777,7 @@
           app.creditos = usuarioGuardado.creditos ?? 1;
         } else {
           const codigoValido = /^FS-[A-Z]{2}\d{2}$/.test(app.datos.codigoRef.trim());
-          app.creditos = codigoValido ? 2 : 1;
+          app.creditos = 99;
           const entradaUsuario = { ...app.datos, creditos: app.creditos, membresia: null };
           const existente = app.usuarios.findIndex(u => u.email.toLowerCase() === app.datos.email.toLowerCase());
           if (existente >= 0) app.usuarios[existente] = entradaUsuario;
@@ -2800,8 +2796,7 @@
         guardarSesion();
         setTimeout(() => document.getElementById('partidos').scrollIntoView({ behavior: 'smooth', block: 'start' }), 320);
         const svgGift = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`;
-        const fichasMsg = app.creditos === 2 ? '2 fichas gratis — código de invitación válido' : '1 ficha gratis añadida — ¡úsala esta semana!';
-        mostrarToast(svgGift, `¡Bienvenido, ${app.usuario.nombre.split(' ')[0]}!`, fichasMsg);
+        mostrarToast(svgGift, `¡Bienvenido, ${app.usuario.nombre.split(' ')[0]}!`, 'Ya puedes reservar tu plaza en los partidos');
       } catch (e) {
         if (btn) { btn.disabled = false; btn.textContent = 'Ir a los partidos'; }
         const msg = e?.message?.includes('duplicate') ? 'Ya existe una cuenta con ese email.' : (e?.message || 'Error al crear la cuenta. Inténtalo de nuevo.');
