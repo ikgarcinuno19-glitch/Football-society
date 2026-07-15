@@ -905,6 +905,12 @@
     .pwa-instalar { display: block; width: 100%; padding: 14px; background: #C8FF00; color: #080808; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 800; cursor: pointer; font-family: inherit; margin-bottom: 24px; transition: filter var(--t); }
     .pwa-instalar:hover { filter: brightness(0.92); }
     .pwa-instalar:active { transform: scale(0.98); }
+
+    /* ==================== CHECKBOX PRIVACIDAD ==================== */
+    .chk-priv { display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; cursor: pointer; font-size: 0.76rem; color: var(--texto-suave); line-height: 1.5; }
+    .chk-priv input { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--dorado); cursor: pointer; flex-shrink: 0; }
+    .chk-priv a { color: var(--dorado); text-decoration: underline; text-underline-offset: 2px; }
+    .chk-priv a:hover { color: var(--dorado-claro); }
     .pwa-sep { text-align: center; font-size: 0.78rem; color: var(--texto-muted); margin-bottom: 18px; }
     .pwa-tabs { display: flex; border: 1px solid var(--borde); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
     .pwa-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.84rem; font-weight: 700; cursor: pointer; background: none; border: none; color: var(--texto-muted); font-family: inherit; transition: all var(--t); }
@@ -1977,6 +1983,7 @@
       datos: {
         nombre: '', email: '', contrasena: '', telefono: '',
         posicion: '', nivel: '', disponibilidad: [], foto: null, codigoRef: '',
+        aceptaPriv: false,
       },
 
       // Usuarios registrados en esta sesión
@@ -2575,7 +2582,7 @@
     function irARegistro() {
       app.modoModal = 'registro';
       app.pasoModal = 1;
-      app.datos = { nombre: '', email: '', contrasena: '', telefono: '', posicion: '', nivel: '', disponibilidad: [], foto: null, codigoRef: '' };
+      app.datos = { nombre: '', email: '', contrasena: '', telefono: '', posicion: '', nivel: '', disponibilidad: [], foto: null, codigoRef: '', aceptaPriv: false };
       actualizarModal();
     }
 
@@ -2629,7 +2636,7 @@
         pintarPartidos();
         pintarRanking();
         guardarSesion();
-        mostrarToast(svgCheck, `¡Bienvenido de vuelta, ${usuario.nombre.split(' ')[0]}!`, 'Sesión iniciada correctamente');
+        mostrarToast(svgCheck, `¡Bienvenido de vuelta, ${esc(usuario.nombre.split(' ')[0])}!`, 'Sesión iniciada correctamente');
       } catch (e) {
         errEl.textContent = e.message || 'Usuario no encontrado o contraseña incorrecta.';
         errEl.classList.add('visible');
@@ -2737,7 +2744,7 @@
         </button>
         <div class="foto-upload-area">
           <button type="button" class="foto-btn" onclick="document.getElementById('inputFoto').click()">
-            <div class="foto-circulo" id="fotoCirculo" style="${app.datos.foto ? `background-image:url('${app.datos.foto}');background-size:cover;background-position:center;font-size:0` : ''}">
+            <div class="foto-circulo" id="fotoCirculo" style="${app.datos.foto ? `background-image:url('${esc(app.datos.foto)}');background-size:cover;background-position:center;font-size:0` : ''}">
               ${app.datos.foto ? '' : (app.datos.nombre ? app.datos.nombre[0].toUpperCase() : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>')}
             </div>
             <span class="foto-label">${app.datos.foto ? 'Cambiar foto' : 'Subir foto de perfil'}</span>
@@ -2771,12 +2778,16 @@
           <label for="inp-codigo">Código de invitación (opcional)</label>
         </div>
 
+        <label class="chk-priv">
+          <input type="checkbox" id="chk-priv" ${app.datos.aceptaPriv ? 'checked' : ''}
+            onchange="app.datos.aceptaPriv=this.checked;const e=document.getElementById('err-priv');if(e)e.textContent=''">
+          <span>He leído y acepto la <a href="#privacidad" target="_blank" rel="noopener">política de privacidad</a> y el <a href="#aviso-legal" target="_blank" rel="noopener">aviso legal</a></span>
+        </label>
+        <span class="error-msg" id="err-priv" style="display:block;margin-top:6px"></span>
+
         <div class="nav-modal">
           <button class="btn btn-verde btn-block btn-lg" onclick="siguientePaso1()">Continuar →</button>
-        </div>
-        <p style="font-size:0.72rem;color:var(--texto-muted);text-align:center;margin-top:14px">
-          Al continuar, aceptas nuestros <a href="#" style="color:var(--texto-suave)">Términos de uso</a>
-        </p>`;
+        </div>`;
     }
 
     function actualizarInicialFoto() {
@@ -2855,7 +2866,7 @@
       const codigoOk = /^FS-[A-Z]{2}\d{2}$/.test(d.codigoRef.trim());
       const fichas = codigoOk ? 2 : 1;
       const fotoHtml = d.foto
-        ? `<div style="width:70px;height:70px;border-radius:50%;background-image:url('${d.foto}');background-size:cover;background-position:center;margin:0 auto 18px;border:2px solid var(--dorado)"></div>`
+        ? `<div style="width:70px;height:70px;border-radius:50%;background-image:url('${esc(d.foto)}');background-size:cover;background-position:center;margin:0 auto 18px;border:2px solid var(--dorado)"></div>`
         : `<div class="bienvenida-ico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>`;
 
       return `
@@ -2895,6 +2906,11 @@
       }
       if (!d.telefono.trim() || d.telefono.length < 9)  { ok = false; marcarError('inp-telf','err-telf','Teléfono no válido'); }
       if (d.contrasena.length < 6)                       { ok = false; marcarError('inp-pass','err-pass','Mínimo 6 caracteres'); }
+      if (!d.aceptaPriv) {
+        ok = false;
+        const e = document.getElementById('err-priv');
+        if (e) e.textContent = 'Debes aceptar la política de privacidad para continuar';
+      }
       if (ok) { app.pasoModal = 2; actualizarModal(); }
     }
 
@@ -3238,7 +3254,7 @@
       const ini = u.nombre.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase();
       const { partidosJugados, mvps } = app.logros;
       const avHtml = u.foto
-        ? `<img src="${u.foto}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
+        ? `<img src="${esc(u.foto)}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
         : ini;
 
       const tabs = ['logros','partidos','desafios','carnet','referidos'];
