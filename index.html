@@ -1380,7 +1380,7 @@
     </div>
     <div class="campos-grid">
 
-      <div class="campo-card">
+      <div class="campo-card" data-ciudad="Laredo">
         <div class="bg" style="background-image:url('https://i.imgur.com/YEw3haK.jpeg')"></div>
         <div class="ov"></div>
         <div class="txt">
@@ -1400,7 +1400,7 @@
         </div>
       </div>
 
-      <div class="campo-card">
+      <div class="campo-card" data-ciudad="Bilbao">
         <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=900&auto=format&q=80')"></div>
         <div class="ov"></div>
         <div class="txt">
@@ -1992,6 +1992,7 @@
       membresia: null,
       filtroCiudad: null,
       perfilTab: 'logros',
+      distanciasKm: null, // { ciudad: km } cuando el usuario comparte ubicación
 
       partidos: [
         { id: 'bil-jue', ciudad: 'Bilbao', campo: 'Etxezuri', dia: 'Jue 3 Jul', hora: '19:00', formato: '7v7', precio: 5, total: 14, ocupadas: 8,  apuntado: false },
@@ -2031,6 +2032,45 @@
       'Bilbao': 'https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=600&auto=format&q=75',
       'Laredo': 'https://i.imgur.com/NGDyFKr.jpeg',
     };
+
+    /* ==================== GEOLOCALIZACIÓN ==================== */
+    const coordsCampos = {
+      'Laredo': { lat: 43.4073, lon: -3.4312 }, // Playa de La Salvé
+      'Bilbao': { lat: 43.2627, lon: -2.9253 }, // Etxezuri
+    };
+
+    function kmEntre(lat1, lon1, lat2, lon2) {
+      const R = 6371, rad = Math.PI / 180;
+      const dLat = (lat2 - lat1) * rad;
+      const dLon = (lon2 - lon1) * rad;
+      const a = Math.sin(dLat/2) ** 2 +
+                Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon/2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(a));
+    }
+
+    function solicitarUbicacion() {
+      if (!('geolocation' in navigator)) return;
+      navigator.geolocation.getCurrentPosition(pos => {
+        const { latitude, longitude } = pos.coords;
+        const d = {};
+        Object.entries(coordsCampos).forEach(([ciudad, c]) => {
+          d[ciudad] = Math.round(kmEntre(latitude, longitude, c.lat, c.lon));
+        });
+        app.distanciasKm = d;
+        ordenarCamposPorCercania();
+        pintarPartidos();
+      }, () => { /* rechazado o no disponible: orden por defecto */ }, {
+        enableHighAccuracy: false, timeout: 8000, maximumAge: 600000,
+      });
+    }
+
+    function ordenarCamposPorCercania() {
+      const grid = document.querySelector('.campos-grid');
+      if (!grid || !app.distanciasKm) return;
+      [...grid.children]
+        .sort((a, b) => (app.distanciasKm[a.dataset.ciudad] ?? 1e9) - (app.distanciasKm[b.dataset.ciudad] ?? 1e9))
+        .forEach(el => grid.appendChild(el));
+    }
 
     // Definición de badges
     const _icoStar   = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
@@ -2074,7 +2114,10 @@
       }
 
       const filtro = app.filtroCiudad || null;
-      const ciudades = [...new Set(app.partidos.map(p => p.ciudad))].filter(c => !filtro || c === filtro);
+      let ciudades = [...new Set(app.partidos.map(p => p.ciudad))].filter(c => !filtro || c === filtro);
+      if (app.distanciasKm) {
+        ciudades = ciudades.sort((a, b) => (app.distanciasKm[a] ?? 1e9) - (app.distanciasKm[b] ?? 1e9));
+      }
       const svgPin = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>`;
       const icos = { 'Bilbao': svgPin, 'Laredo': svgPin };
       let html = '';
@@ -2093,7 +2136,7 @@
             <div class="ciudad-titulo">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--dorado)"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
               <div>
-                <div class="ciudad-nombre">${icos[ciudad] || ''} ${ciudad}</div>
+                <div class="ciudad-nombre">${icos[ciudad] || ''} ${ciudad}${app.distanciasKm?.[ciudad] != null ? ` <span style="font-size:0.72rem;font-weight:500;color:var(--texto-muted);">· a ${app.distanciasKm[ciudad]} km</span>` : ''}</div>
                 <div class="ciudad-sub">${lista[0].campo}</div>
               </div>
             </div>
@@ -2144,7 +2187,8 @@
             <div class="partido-hora">${p.hora}</div>
             <div class="partido-datos">
               <span class="dato">${p.formato}</span>
-              <span class="dato">${p.precio}€</span>
+              <span class="dato">1 ficha</span>
+              <span class="dato">${p.ciudad}${app.distanciasKm?.[p.ciudad] != null ? ` · ${app.distanciasKm[p.ciudad]} km` : ''}</span>
             </div>
             <div class="plazas-fila">
               <span style="color:var(--texto-suave)">${p.ocupadas} de ${p.total} plazas</span>
@@ -3674,6 +3718,7 @@
       }
       pintarPartidos();
       pintarRanking();
+      solicitarUbicacion();
 /* ── Scroll spy: nav principal + panel hamburguesa ── */
       const todosLosEnlaces = document.querySelectorAll('.nav-links a[href^="#"], .panel-hamb-item[href^="#"]');
       const idsObservados   = new Set([...todosLosEnlaces].map(a => a.getAttribute('href').slice(1)).filter(Boolean));
