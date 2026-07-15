@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Football Society – Juega cuando quieras. Sin organizar nada.</title>
-  <meta name="description" content="Fútbol amateur en el País Vasco. Apúntate a partidos en Bilbao y Laredo, desde 2€ por partido.">
+  <meta name="description" content="Fútbol amateur en el País Vasco. Tu primera ficha es gratis — apúntate a partidos en Bilbao y Laredo.">
   <meta name="theme-color" content="#080808">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="logo-fs.png">
@@ -1077,8 +1077,8 @@
     <!-- Derecha: créditos + perfil/login + Instagram + hamburguesa -->
     <div class="nav-der">
 
-      <!-- Saldo fichas (oculto en MVP) -->
-      <div class="nav-creditos" id="navCreditos" onclick="location.hash='creditos'" style="display:none!important">
+      <!-- Saldo de fichas (visible al iniciar sesión) -->
+      <div class="nav-creditos" id="navCreditos" onclick="location.hash='creditos'" style="display:none">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M8.5 9.5a3.5 3.5 0 0 1 7 0c0 2-3.5 3-3.5 5m0 0h.01"/></svg>
         <span id="saldoCreditos">0</span> ficha<span id="sufCreditos">s</span>
       </div>
@@ -1193,7 +1193,7 @@
         <span class="acento">Cuando</span><br>
         quieras.
       </h1>
-      <p class="hero-sub">Apúntate a partidos sueltos en Bilbao y Laredo. Sin equipo, sin grupos de WhatsApp. Reservas, pagas y juegas.</p>
+      <p class="hero-sub">Apúntate a partidos sueltos en Bilbao y Laredo. Sin equipo, sin grupos de WhatsApp. Tu primera ficha es gratis.</p>
       <div class="hero-ctas">
         <button class="btn btn-dorado btn-lg" onclick="abrirModal()">
           Empieza a jugar
@@ -1295,15 +1295,15 @@
           <div class="paso-ico">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <div class="paso-titulo">Paga y juega</div>
-          <div class="paso-desc">Desde 2 € por partido. Sin cuotas ni compromisos. Cancela con 24 h de antelación.</div>
+          <div class="paso-titulo">Usa tu ficha y juega</div>
+          <div class="paso-desc">Tu primera ficha es gratis. Después, packs desde 1,40 € por partido. Cancela con 24 h y recuperas tu ficha.</div>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!-- ==================== FICHAS Y MEMBRESÍAS ==================== -->
+  <!-- ==================== FICHAS ==================== -->
   <section id="creditos" class="seccion-creditos">
     <div class="cred-inner">
 
@@ -1314,87 +1314,54 @@
         </a>
       </div>
       <div class="cred-header">
-        <div class="etiqueta">Fichas y membresías</div>
+        <div class="etiqueta">Fichas</div>
         <h2 class="titulo-seccion">Tu ficha, tu partido</h2>
-        <p class="cred-subtitulo">Compra una ficha y úsala cuando quieras. Sin cuotas obligatorias, sin grupos de WhatsApp.</p>
+        <p class="cred-subtitulo">1 partido = 1 ficha. Tu primera ficha es gratis al registrarte, y las fichas no caducan. Sin cuotas, sin compromisos.</p>
       </div>
 
-      <!-- Packs sueltos -->
+      <!-- Packs -->
       <div class="cred-packs-row">
-        <div class="cred-pack" onclick="comprarPack(1,5,'1 ficha suelta','pack1')">
+        <div class="cred-pack" onclick="abrirCompraPack('pack1')">
           <div class="cred-pack-top">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M8.5 9.5a3.5 3.5 0 0 1 7 0c0 2-3.5 3-3.5 5m0 0h.01"/></svg>
             <span class="cred-pack-label">1 ficha</span>
           </div>
-          <div class="cred-pack-precio"><span class="cred-eur">5</span><span class="cred-suf">€</span></div>
-          <div class="cred-pack-desc">Sin caducidad · Úsala cuando quieras</div>
+          <div class="cred-pack-precio"><span class="cred-eur">2</span><span class="cred-suf">€</span></div>
+          <div class="cred-pack-desc">Para tu próximo partido</div>
           <button class="cred-pack-btn">Comprar</button>
         </div>
-        <div class="cred-pack cred-pack-oferta" onclick="comprarPack(5,22,'Pack 5 fichas','pack5')">
+        <div class="cred-pack cred-pack-oferta" onclick="abrirCompraPack('pack5')">
           <div class="cred-pack-top">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             <span class="cred-pack-label">Pack 5 fichas</span>
-            <span class="cred-ahorro">Ahorras 3 €</span>
+            <span class="cred-ahorro">Ahorras 2 €</span>
           </div>
-          <div class="cred-pack-precio"><span class="cred-eur">22</span><span class="cred-suf">€</span></div>
-          <div class="cred-pack-desc">4,40 €/ficha · La opción más flexible</div>
+          <div class="cred-pack-precio"><span class="cred-eur">8</span><span class="cred-suf">€</span></div>
+          <div class="cred-pack-desc">1,60 €/ficha · La más elegida</div>
+          <button class="cred-pack-btn">Comprar pack</button>
+        </div>
+        <div class="cred-pack" onclick="abrirCompraPack('pack10')">
+          <div class="cred-pack-top">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="cred-pack-label">Pack 10 fichas</span>
+            <span class="cred-ahorro">Ahorras 6 €</span>
+          </div>
+          <div class="cred-pack-precio"><span class="cred-eur">14</span><span class="cred-suf">€</span></div>
+          <div class="cred-pack-desc">1,40 €/ficha · Para los habituales</div>
           <button class="cred-pack-btn">Comprar pack</button>
         </div>
       </div>
 
-      <!-- Membresías -->
-      <div class="cred-mem-titulo">
-        <span>Membresías mensuales</span>
-        <span class="cred-mem-sub">Fichas renovadas cada mes · Cancela cuando quieras</span>
+      <!-- Referidos -->
+      <div style="margin-top:36px;padding:22px 24px;background:rgba(212,168,42,0.05);border:1px solid rgba(212,168,42,0.18);border-radius:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <div style="flex:1;min-width:220px;">
+          <div style="font-size:0.9rem;font-weight:700;">Invita y jugad gratis los dos</div>
+          <div style="font-size:0.8rem;color:var(--texto-suave);line-height:1.55;">Cada amigo que se registre con tu código de invitación suma 1 ficha gratis para ti y otra para él.</div>
+        </div>
+        <button class="btn btn-borde" onclick="app.registrado ? abrirPerfil('referidos') : abrirModal()" style="font-size:0.8rem;">Ver mi código</button>
       </div>
-      <div class="cred-mem-grid">
 
-        <div class="cred-mem-card">
-          <div class="cred-mem-tipo rookie">ROOKIE</div>
-          <div class="cred-mem-precio-wrap">
-            <span class="cred-mem-num">9,99</span>
-            <span class="cred-mem-mes">€/mes</span>
-          </div>
-          <ul class="cred-mem-lista">
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 2 fichas al mes</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Badge ROOKIE en tu perfil</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Acceso a la clasificación</li>
-          </ul>
-          <button class="cred-mem-btn" onclick="activarMembresia('ROOKIE')">Activar</button>
-        </div>
-
-        <div class="cred-mem-card cred-mem-popular">
-          <div class="cred-popular-tag">Más popular</div>
-          <div class="cred-mem-tipo pro">PRO</div>
-          <div class="cred-mem-precio-wrap">
-            <span class="cred-mem-num">19,99</span>
-            <span class="cred-mem-mes">€/mes</span>
-          </div>
-          <ul class="cred-mem-lista">
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 5 fichas al mes</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Badge PRO + descuentos</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Acceso prioritario a partidos</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Estadísticas avanzadas</li>
-          </ul>
-          <button class="cred-mem-btn cred-mem-btn-pro" onclick="activarMembresia('PRO')">Activar PRO</button>
-        </div>
-
-        <div class="cred-mem-card">
-          <div class="cred-mem-tipo elite">ÉLITE</div>
-          <div class="cred-mem-precio-wrap">
-            <span class="cred-mem-num">29,99</span>
-            <span class="cred-mem-mes">€/mes</span>
-          </div>
-          <ul class="cred-mem-lista">
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 9 fichas al mes</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Badge ÉLITE + ventajas VIP</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Reserva anticipada exclusiva</li>
-            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Soporte directo por WhatsApp</li>
-          </ul>
-          <button class="cred-mem-btn" onclick="activarMembresia('ELITE')">Activar</button>
-        </div>
-
-      </div>
     </div>
   </section>
 
@@ -1473,7 +1440,7 @@
           ¿Cuánto cuesta jugar?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Desde 2 € por partido. Te registras gratis, reservas tu plaza y pagas por partido. Sin cuotas ni compromisos.</p>
+        <p class="faq-r">Cada partido cuesta 1 ficha, y tu primera ficha es gratis al registrarte. Después puedes comprar fichas sueltas (2 €) o packs con descuento: 5 fichas por 8 € o 10 por 14 €. Las fichas no caducan y no hay cuotas ni compromisos.</p>
       </details>
 
       <details class="faq-item">
@@ -1497,7 +1464,7 @@
           ¿Puedo traer a un amigo?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Por supuesto. Que se registre y reserve su plaza. Cada jugador necesita su propia cuenta para que podamos organizar los equipos.</p>
+        <p class="faq-r">Por supuesto. Que se registre con tu código de invitación y los dos recibís 1 ficha gratis — su primer partido le sale gratis y tú sumas otro. Cada jugador necesita su propia cuenta para que podamos organizar los equipos.</p>
       </details>
 
       <details class="faq-item">
@@ -1521,7 +1488,7 @@
           ¿Hay árbitro en los partidos?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">En los partidos de membresía PRO y ÉLITE sí incluimos coordinador. En los partidos estándar los propios jugadores se autoarbitran — es parte del espíritu del fútbol amateur.</p>
+        <p class="faq-r">En los partidos estándar los propios jugadores se autoarbitran — es parte del espíritu del fútbol amateur. En torneos y eventos especiales sí incluimos coordinador.</p>
       </details>
 
       <details class="faq-item">
@@ -1758,8 +1725,8 @@
         <h4>Jugar</h4>
         <ul class="footer-links">
           <li><a href="#partidos">Ver partidos</a></li>
+          <li><a href="#creditos">Fichas y precios</a></li>
           <li><a href="#" onclick="abrirModal(); return false;">Registrarse</a></li>
-          <!-- Tarifas oculto en MVP -->
         </ul>
       </div>
       <div class="footer-col">
@@ -1804,72 +1771,36 @@
   </div>
 
 
-  <!-- ==================== MODAL METODO DE PAGO ==================== -->
+  <!-- ==================== MODAL COMPRA DE FICHAS ==================== -->
   <div class="modal-capa" id="modalPago" onclick="cerrarSiFondo(event,'modalPago')">
     <div class="modal modal-sm">
       <div class="modal-cabecera">
         <div>
-          <div class="modal-titulo-texto" id="pagoTitulo">Reservar plaza</div>
+          <div class="modal-titulo-texto" id="pagoTitulo">Consigue fichas</div>
           <div class="modal-subtitulo-texto" id="pagoSubtitulo"></div>
         </div>
         <button class="btn-cerrar" onclick="cerrarModalPago()">&#10005;</button>
       </div>
+      <div class="modal-cuerpo" id="pagoCuerpo"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL CONFIRMACION ==================== -->
+  <div class="modal-capa" id="modalConfirm" onclick="cerrarSiFondo(event,'modalConfirm')">
+    <div class="modal modal-sm">
+      <div class="modal-cabecera">
+        <div>
+          <div class="modal-titulo-texto" id="confirmTitulo">Confirmar</div>
+          <div class="modal-subtitulo-texto" id="confirmSub"></div>
+        </div>
+        <button class="btn-cerrar" onclick="cerrarConfirm()">&#10005;</button>
+      </div>
       <div class="modal-cuerpo">
-        <p style="font-size:0.84rem;color:var(--texto-suave);margin-bottom:20px;line-height:1.6;">
-          Elige como quieres pagar:
-        </p>
-
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <!-- Tarjeta / Apple Pay vía Stripe -->
-          <button class="sf-pack sf-pack-destacado" id="btnPagoStripe" onclick="pagarConStripe()" style="cursor:pointer;">
-            <div class="sf-pack-info">
-              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Tarjeta / Apple Pay
-              </span>
-              <span class="sf-pack-desc">Pago seguro con Stripe</span>
-            </div>
-            <span class="sf-pack-precio" id="pagoPrecioStripe">2 &#8364;</span>
-          </button>
-
-          <!-- Bizum -->
-          <button class="sf-pack" id="btnPagoBizum" onclick="pagarConBizum()" style="cursor:pointer;">
-            <div class="sf-pack-info">
-              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                Bizum
-              </span>
-              <span class="sf-pack-desc">Al 688 73 71 79</span>
-            </div>
-            <span class="sf-pack-precio" id="pagoPrecioBizum">2 &#8364;</span>
-          </button>
-
-          <!-- Efectivo -->
-          <button class="sf-pack" id="btnPagoEfectivo" onclick="pagarEnEfectivo()" style="cursor:pointer;">
-            <div class="sf-pack-info">
-              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg>
-                Efectivo
-              </span>
-              <span class="sf-pack-desc">Pagas en el campo antes del partido</span>
-            </div>
-            <span class="sf-pack-precio" id="pagoPrecioEfectivo">2 &#8364;</span>
-          </button>
+        <p id="confirmTexto" style="font-size:0.86rem;color:var(--texto-suave);line-height:1.65;margin-bottom:22px;"></p>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-ghost" style="flex:1;border:1.5px solid var(--borde-fuerte);" onclick="cerrarConfirm()">Volver</button>
+          <button class="btn btn-verde" style="flex:1;" id="confirmOkBtn" onclick="ejecutarConfirm()">Confirmar</button>
         </div>
-
-        <!-- Instrucciones Bizum (ocultas por defecto) -->
-        <div id="instruccionesBizum" style="display:none;margin-top:20px;padding:20px;background:var(--sup-1);border-radius:12px;border:1px solid var(--borde);">
-          <p style="font-size:0.9rem;font-weight:600;margin-bottom:12px;">Envia Bizum a:</p>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-            <span style="font-size:1.3rem;font-weight:700;letter-spacing:1px;" id="bizumTelefono">688 73 71 79</span>
-            <button class="btn btn-ghost" onclick="copiarBizum()" style="font-size:0.75rem;padding:4px 10px;">Copiar</button>
-          </div>
-          <p style="font-size:0.82rem;color:var(--texto-suave);line-height:1.5;margin-bottom:16px;">
-            Pon tu nombre de FS en el concepto. Una vez enviado, pulsa confirmar.
-          </p>
-          <button class="btn btn-verde" onclick="confirmarBizum()" style="width:100%;">Ya he enviado el Bizum</button>
-        </div>
-
       </div>
     </div>
   </div>
@@ -1931,8 +1862,9 @@
       stripe: {
         publishableKey: '',
         paymentLinks: {
-          pack: 'https://buy.stripe.com/5kQbJ16pZ3Ttb7De6h53O00',
-          // rookie: '', pro: '', elite: ''  — añadir cuando se creen
+          pack1:  'https://buy.stripe.com/5kQbJ16pZ3Ttb7De6h53O00', // 1 ficha · 2 €
+          pack5:  '', // Pack 5 fichas · 8 € — crear Payment Link en Stripe
+          pack10: '', // Pack 10 fichas · 14 € — crear Payment Link en Stripe
         }
       }
     };
@@ -1966,9 +1898,20 @@
 
       async register(datos) {
         if (!FS_LIVE) return null;
-        const pass     = await hashPass(datos.contrasena);
-        const creditos = 0;
-        const ref      = codigoRef(datos.nombre);
+        const pass = await hashPass(datos.contrasena);
+        const ref  = codigoRef(datos.nombre);
+
+        /* Primera ficha gratis. Si trae código de invitación válido,
+           una extra para él y otra para quien le invitó. */
+        let creditos = 1;
+        let padrino  = null;
+        const codigo = (datos.codigoRef || '').trim().toUpperCase();
+        if (/^FS-[A-Z]{2}\d{2}$/.test(codigo)) {
+          const { data: candidatos } = await sb.from('usuarios').select('id, nombre, creditos');
+          padrino = (candidatos || []).find(u => codigoRef(u.nombre) === codigo) || null;
+          if (padrino) creditos = 2;
+        }
+
         const { data, error } = await sb.from('usuarios').insert({
           nombre:        datos.nombre.trim(),
           email:         datos.email.toLowerCase().trim(),
@@ -1985,6 +1928,9 @@
         }).select().single();
         if (error) throw error;
         await sb.from('logros').insert({ usuario_id: data.id, partidos_jugados: 0, mvps: 0 });
+        if (padrino) {
+          await sb.from('usuarios').update({ creditos: (padrino.creditos || 0) + 1 }).eq('id', padrino.id);
+        }
         return data;
       },
 
@@ -2001,35 +1947,23 @@
       },
 
       async reservarPlaza(partidoId) {
-        // Reserva ahora se hace en comprobarRetornoStripe tras pagar
+        if (!FS_LIVE || !app.usuario?.id) return;
+        const uid = app.usuario.id;
+        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: partidoId });
+        await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', uid);
+        const p = app.partidos.find(x => x.id === partidoId);
+        if (p) await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', partidoId);
+        await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
       },
 
       async cancelarInscripcion(partidoId) {
         if (!FS_LIVE || !app.usuario?.id) return;
         const uid = app.usuario.id;
         await sb.from('inscripciones').delete().eq('usuario_id', uid).eq('partido_id', partidoId);
+        await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', uid);
         const p = app.partidos.find(x => x.id === partidoId);
         if (p) await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', partidoId);
         await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
-      },
-
-      async comprarPack(priceKey, fichas) {
-        const link = FS_CONFIG.stripe.paymentLinks[priceKey] || FS_CONFIG.stripe.paymentLinks.pack;
-        if (link) {
-          if (FS_LIVE && app.usuario?.id) {
-            localStorage.setItem('fs_pago_pendiente', JSON.stringify({ fichas, userId: app.usuario.id }));
-          }
-          window.location.href = link;
-          return 'stripe';
-        }
-        if (FS_LIVE && app.usuario?.id)
-          await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', app.usuario.id);
-      },
-
-      async suscribir(priceKey) {
-        /* TODO:STRIPE → Payment Link para suscripción priceKey */
-        if (FS_LIVE && app.usuario?.id)
-          await sb.from('usuarios').update({ membresia: app.membresia, creditos: app.creditos }).eq('id', app.usuario.id);
       },
     };
 
@@ -2190,7 +2124,7 @@
       } else if (lleno) {
         boton = `<button class="btn-unirse" style="background:var(--sup-3);border:1.5px solid var(--borde);color:var(--texto-muted);" disabled>Sin plazas</button>`;
       } else {
-        boton = `<button class="btn-unirse btn-verde" onclick="apuntarseConCredito('${p.id}')" style="display:flex;align-items:center;justify-content:center;gap:7px;">Reservar plaza · ${p.precio}€</button>`;
+        boton = `<button class="btn-unirse btn-verde" onclick="apuntarseConCredito('${p.id}')" style="display:flex;align-items:center;justify-content:center;gap:7px;">${svgFicha} Usar 1 ficha</button>`;
       }
 
       return `
@@ -2355,44 +2289,180 @@
       pintarRanking();
     }
 
-    /* ==================== RESERVA CON PAGO DIRECTO ==================== */
-    let _pagoPartidoId = null;
+    /* ==================== FICHAS: RESERVA Y COMPRA ==================== */
+    const PACKS_FICHAS = {
+      pack1:  { fichas: 1,  precio: 2,  nombre: '1 ficha',        desc: 'Para tu próximo partido' },
+      pack5:  { fichas: 5,  precio: 8,  nombre: 'Pack 5 fichas',  desc: '1,60 €/ficha', ahorro: 'Ahorras 2 €' },
+      pack10: { fichas: 10, precio: 14, nombre: 'Pack 10 fichas', desc: '1,40 €/ficha', ahorro: 'Ahorras 6 €' },
+    };
 
-    function apuntarseConCredito(id) {
+    const svgFichaIco = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M8.5 9.5a3.5 3.5 0 0 1 7 0c0 2-3.5 3-3.5 5m0 0h.01"/></svg>`;
+
+    let _pagoPartidoId = null;   // partido pendiente de reserva tras comprar
+    let _packElegido   = null;   // clave del pack seleccionado
+
+    async function apuntarseConCredito(id) {
       const p = app.partidos.find(x => x.id === id);
       if (!p || p.apuntado || p.ocupadas >= p.total) return;
+      if (!app.registrado || !app.usuario?.id) { abrirModal(); return; }
+      if (app.creditos >= 1) { await reservarConFicha(id); return; }
+      abrirModalFichas(id);
+    }
 
-      if (!app.registrado || !app.usuario?.id) {
-        abrirModal();
-        return;
-      }
+    async function reservarConFicha(id) {
+      const p = app.partidos.find(x => x.id === id);
+      if (!p || p.apuntado) return;
+      app.creditos = Math.max(0, app.creditos - 1);
+      p.apuntado = true;
+      p.ocupadas = Math.min(p.ocupadas + 1, p.total);
+      app.logros.partidosJugados += 1;
+      actualizarNavCreditos();
+      pintarPartidos();
+      pintarRanking();
+      await fsAPI.reservarPlaza(id);
+      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Te queda${app.creditos === 1 ? '' : 'n'} ${app.creditos} ficha${app.creditos === 1 ? '' : 's'}`);
+    }
 
-      _pagoPartidoId = id;
-      document.getElementById('pagoSubtitulo').textContent = `${p.ciudad} · ${p.dia} · ${p.hora} · ${p.precio}€`;
-      document.getElementById('pagoPrecioStripe').textContent = `${p.precio} €`;
-      document.getElementById('pagoPrecioBizum').textContent = `${p.precio} €`;
-      document.getElementById('instruccionesBizum').style.display = 'none';
+    /* -------- Modal de compra de fichas -------- */
+    function abrirModalFichas(idPartido) {
+      _pagoPartidoId = idPartido || null;
+      _packElegido   = null;
+      const p = _pagoPartidoId ? app.partidos.find(x => x.id === _pagoPartidoId) : null;
+      document.getElementById('pagoTitulo').textContent = p ? 'Te has quedado sin fichas' : 'Consigue fichas';
+      document.getElementById('pagoSubtitulo').textContent = p
+        ? `${p.ciudad} · ${p.dia} · ${p.hora} — necesitas 1 ficha`
+        : 'Las fichas no caducan';
+      renderPasoPacks();
       document.getElementById('modalPago').classList.add('visible');
       document.body.style.overflow = 'hidden';
     }
 
+    function abrirCompraPack(key) {
+      if (!app.registrado || !app.usuario?.id) { abrirModal(); return; }
+      _pagoPartidoId = null;
+      document.getElementById('pagoTitulo').textContent = 'Consigue fichas';
+      document.getElementById('pagoSubtitulo').textContent = 'Las fichas no caducan';
+      document.getElementById('modalPago').classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      elegirPack(key);
+    }
+
     function cerrarModalPago() {
       document.getElementById('modalPago').classList.remove('visible');
-      document.body.style.overflow = '';
+      if (!document.querySelector('.modal-capa.visible')) document.body.style.overflow = '';
       _pagoPartidoId = null;
+      _packElegido   = null;
     }
 
-    function pagarConStripe() {
-      if (!_pagoPartidoId) return;
-      localStorage.setItem('fs_reserva_pendiente', JSON.stringify({
-        partidoId: _pagoPartidoId,
-        userId: app.usuario.id
+    function renderPasoPacks() {
+      const cont = document.getElementById('pagoCuerpo');
+      if (!cont) return;
+      const btn = (key, destacado) => {
+        const pk = PACKS_FICHAS[key];
+        return `
+          <button class="sf-pack ${destacado ? 'sf-pack-destacado' : ''}" onclick="elegirPack('${key}')" style="cursor:pointer;">
+            <div class="sf-pack-info">
+              <span class="sf-pack-nombre">${pk.nombre}${pk.ahorro ? ` <span style="font-size:0.68rem;font-weight:700;color:var(--verde);margin-left:6px;">${pk.ahorro}</span>` : ''}</span>
+              <span class="sf-pack-desc">${pk.desc}</span>
+            </div>
+            <span class="sf-pack-precio">${pk.precio} &#8364;</span>
+          </button>`;
+      };
+      cont.innerHTML = `
+        <p style="font-size:0.84rem;color:var(--texto-suave);margin-bottom:20px;line-height:1.6;">1 partido = 1 ficha. Elige tu pack:</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          ${btn('pack1', false)}
+          ${btn('pack5', true)}
+          ${btn('pack10', false)}
+        </div>`;
+    }
+
+    function elegirPack(key) {
+      if (!PACKS_FICHAS[key]) return;
+      _packElegido = key;
+      renderPasoMetodo();
+    }
+
+    function renderPasoMetodo() {
+      const cont = document.getElementById('pagoCuerpo');
+      const pack = PACKS_FICHAS[_packElegido];
+      if (!cont || !pack) return;
+      const linkStripe = FS_CONFIG.stripe.paymentLinks[_packElegido];
+      const conPartido = !!_pagoPartidoId;
+
+      const svgCard  = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`;
+      const svgPhone = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
+      const svgCash  = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg>`;
+
+      let metodos = '';
+      if (linkStripe) {
+        metodos += `
+          <button class="sf-pack sf-pack-destacado" onclick="pagarFichasStripe()" style="cursor:pointer;">
+            <div class="sf-pack-info">
+              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">${svgCard} Tarjeta / Apple Pay</span>
+              <span class="sf-pack-desc">Pago seguro con Stripe</span>
+            </div>
+            <span class="sf-pack-precio">${pack.precio} &#8364;</span>
+          </button>`;
+      }
+      metodos += `
+        <button class="sf-pack" onclick="mostrarInstruccionesBizum()" style="cursor:pointer;">
+          <div class="sf-pack-info">
+            <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">${svgPhone} Bizum</span>
+            <span class="sf-pack-desc">Al 688 73 71 79</span>
+          </div>
+          <span class="sf-pack-precio">${pack.precio} &#8364;</span>
+        </button>`;
+      if (conPartido && pack.fichas === 1) {
+        metodos += `
+          <button class="sf-pack" onclick="pagarEnEfectivo()" style="cursor:pointer;">
+            <div class="sf-pack-info">
+              <span class="sf-pack-nombre" style="display:flex;align-items:center;gap:8px;">${svgCash} Efectivo</span>
+              <span class="sf-pack-desc">Pagas en el campo antes del partido</span>
+            </div>
+            <span class="sf-pack-precio">${pack.precio} &#8364;</span>
+          </button>`;
+      }
+
+      cont.innerHTML = `
+        <button class="btn btn-ghost" onclick="renderPasoPacks()" style="font-size:0.76rem;padding:4px 0;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Cambiar pack
+        </button>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--sup-1);border:1px solid var(--borde);border-radius:12px;margin-bottom:18px;">
+          <span style="font-size:0.85rem;font-weight:700;">${pack.nombre}</span>
+          <span style="font-size:0.95rem;font-weight:700;color:var(--dorado);">${pack.precio} &#8364;</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">${metodos}</div>
+        <div id="instruccionesBizum" style="display:none;margin-top:18px;padding:20px;background:var(--sup-1);border-radius:12px;border:1px solid var(--borde);">
+          <p style="font-size:0.9rem;font-weight:600;margin-bottom:12px;">Envía ${pack.precio} &#8364; por Bizum a:</p>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <span style="font-size:1.3rem;font-weight:700;letter-spacing:1px;">688 73 71 79</span>
+            <button class="btn btn-ghost" onclick="copiarBizum()" style="font-size:0.75rem;padding:4px 10px;">Copiar</button>
+          </div>
+          <p style="font-size:0.82rem;color:var(--texto-suave);line-height:1.5;margin-bottom:16px;">
+            Pon tu nombre de FS en el concepto. Una vez enviado, pulsa confirmar.
+          </p>
+          <button class="btn btn-verde" onclick="confirmarBizum()" style="width:100%;">Ya he enviado el Bizum</button>
+        </div>`;
+    }
+
+    /* -------- Métodos de pago -------- */
+    function pagarFichasStripe() {
+      const pack = PACKS_FICHAS[_packElegido];
+      const link = FS_CONFIG.stripe.paymentLinks[_packElegido];
+      if (!pack || !link || !app.usuario?.id) return;
+      localStorage.setItem('fs_compra_pendiente', JSON.stringify({
+        fichas:    pack.fichas,
+        userId:    app.usuario.id,
+        partidoId: _pagoPartidoId || null,
       }));
-      window.location.href = FS_CONFIG.stripe.paymentLinks.pack;
+      window.location.href = link;
     }
 
-    function pagarConBizum() {
-      document.getElementById('instruccionesBizum').style.display = 'block';
+    function mostrarInstruccionesBizum() {
+      const el = document.getElementById('instruccionesBizum');
+      if (el) el.style.display = 'block';
     }
 
     function copiarBizum() {
@@ -2400,79 +2470,73 @@
       mostrarToast(svgCheck, 'Copiado', '688 73 71 79');
     }
 
-    async function confirmarBizum() {
-      if (!_pagoPartidoId || !app.usuario?.id) return;
-      const p = app.partidos.find(x => x.id === _pagoPartidoId);
-      if (!p) return;
-
-      p.apuntado = true;
-      p.ocupadas = Math.min(p.ocupadas + 1, p.total);
-      app.logros.partidosJugados += 1;
-      pintarPartidos();
-      pintarRanking();
-
-      if (FS_LIVE) {
-        const uid = app.usuario.id;
-        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: _pagoPartidoId });
-        await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', _pagoPartidoId);
-        await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
+    async function acreditarFichas(n) {
+      app.creditos += n;
+      actualizarNavCreditos();
+      if (FS_LIVE && app.usuario?.id) {
+        await sb.from('usuarios').update({ creditos: app.creditos }).eq('id', app.usuario.id);
       }
+    }
 
+    async function confirmarBizum() {
+      const pack = PACKS_FICHAS[_packElegido];
+      if (!pack || !app.usuario?.id) return;
+      const pid = _pagoPartidoId;
+      await acreditarFichas(pack.fichas);
       cerrarModalPago();
-      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Bizum enviado`);
+      if (pid) {
+        await reservarConFicha(pid);
+      } else {
+        mostrarToast(svgFichaIco, `+${pack.fichas} ficha${pack.fichas > 1 ? 's' : ''}`, `Bizum de ${pack.precio} € · Saldo: ${app.creditos}`);
+      }
     }
 
     async function pagarEnEfectivo() {
-      if (!_pagoPartidoId || !app.usuario?.id) return;
-      const p = app.partidos.find(x => x.id === _pagoPartidoId);
-      if (!p) return;
-
+      /* Solo para 1 ficha ligada a un partido: reserva ya y se paga en el campo */
+      const pid = _pagoPartidoId;
+      if (!pid || !app.usuario?.id) return;
+      const p = app.partidos.find(x => x.id === pid);
+      if (!p || p.apuntado) { cerrarModalPago(); return; }
       p.apuntado = true;
       p.ocupadas = Math.min(p.ocupadas + 1, p.total);
       app.logros.partidosJugados += 1;
       pintarPartidos();
       pintarRanking();
-
       if (FS_LIVE) {
         const uid = app.usuario.id;
-        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: _pagoPartidoId });
-        await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', _pagoPartidoId);
+        await sb.from('inscripciones').insert({ usuario_id: uid, partido_id: pid });
+        await sb.from('partidos').update({ ocupadas: p.ocupadas }).eq('id', pid);
         await sb.from('logros').update({ partidos_jugados: app.logros.partidosJugados, updated_at: new Date().toISOString() }).eq('usuario_id', uid);
       }
-
       cerrarModalPago();
-      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Pago en efectivo en el campo`);
+      mostrarToast(svgCheck, 'Plaza reservada', `${p.ciudad} · ${p.dia} a las ${p.hora} · Pagas ${PACKS_FICHAS.pack1.precio} € en el campo`);
     }
 
-    async function comprarPack(fichas, precio, label, priceKey) {
-      if (!app.registrado) { abrirModal(); return; }
-      const resultado = await fsAPI.comprarPack(priceKey, fichas);
-      if (resultado === 'stripe') {
-        cerrarModalPago();
-        return;
-      }
-      app.creditos += fichas;
-      actualizarNavCreditos();
-      cerrarModalPago();
-      pintarPartidos();
-      const svgCoins = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`;
-      mostrarToast(svgCoins, `+${fichas} ficha${fichas > 1 ? 's' : ''} añadidas`, `${precio}€ · ${label} · Total: ${app.creditos}`);
+    /* -------- Confirmación genérica -------- */
+    let _confirmCb = null;
+
+    function abrirConfirm(cfg) {
+      document.getElementById('confirmTitulo').textContent = cfg.titulo || 'Confirmar';
+      document.getElementById('confirmSub').textContent    = cfg.sub || '';
+      document.getElementById('confirmTexto').textContent  = cfg.texto || '';
+      document.getElementById('confirmOkBtn').textContent  = cfg.accion || 'Confirmar';
+      _confirmCb = cfg.onOk || null;
+      document.getElementById('modalConfirm').classList.add('visible');
+      document.body.style.overflow = 'hidden';
     }
 
-    async function activarMembresia(tipo) {
-      if (!app.registrado) { abrirModal(); return; }
-      const planes = { ROOKIE: { fichas: 2, precio: '9,99' }, PRO: { fichas: 5, precio: '19,99' }, ELITE: { fichas: 9, precio: '29,99' } };
-      const plan = planes[tipo];
-      if (!plan || app.membresia === tipo) return;
-      await fsAPI.suscribir(tipo.toLowerCase()); // no-op en demo; Stripe subscription aquí
-      app.membresia = tipo;
-      app.creditos += plan.fichas;
-      actualizarNavCreditos();
-      actualizarBotonesMem();
-      cerrarModalPago();
-      pintarPartidos();
-      const svgStar = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
-      mostrarToast(svgStar, `¡Membresía ${tipo} activada!`, `+${plan.fichas} fichas · ${plan.precio}€/mes · Total: ${app.creditos}`);
+    function cerrarConfirm() {
+      _confirmCb = null;
+      document.getElementById('modalConfirm').classList.remove('visible');
+      if (!document.querySelector('.modal-capa.visible')) document.body.style.overflow = '';
+    }
+
+    function ejecutarConfirm() {
+      const cb = _confirmCb;
+      _confirmCb = null;
+      document.getElementById('modalConfirm').classList.remove('visible');
+      if (!document.querySelector('.modal-capa.visible')) document.body.style.overflow = '';
+      if (cb) cb();
     }
 
 
@@ -2495,8 +2559,9 @@
 
     function cerrarSiFondo(e, id) {
       if (e.target === document.getElementById(id)) {
-        if (id === 'modalCapa')           cerrarModal();
-        else if (id === 'modalPago') cerrarModalPago();
+        if (id === 'modalCapa')             cerrarModal();
+        else if (id === 'modalPago')    cerrarModalPago();
+        else if (id === 'modalConfirm') cerrarConfirm();
       }
     }
 
@@ -2550,7 +2615,7 @@
 
         app.registrado = true;
         app.usuario    = { ...usuario };
-        app.creditos   = 0;
+        app.creditos   = usuario.creditos ?? 0;
         app.membresia  = usuario.membresia !== 'none' ? usuario.membresia : null;
         app.logros     = { partidosJugados: logrosData.partidos_jugados ?? logrosData.partidosJugados ?? 0, mvps: logrosData.mvps ?? 0 };
 
@@ -2807,8 +2872,8 @@
           <div style="background:rgba(212,168,42,0.08);border:1px solid rgba(212,168,42,0.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
             <div>
-              <div style="font-size:0.82rem;font-weight:700;color:var(--dorado)">Cuenta creada${codigoOk ? ' · código válido' : ''}</div>
-              <div style="font-size:0.74rem;color:var(--texto-suave)">Reserva tu plaza y paga 2€ por partido</div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--dorado)">Regalo de bienvenida${codigoOk ? ' · código válido' : ''}</div>
+              <div style="font-size:0.74rem;color:var(--texto-suave)">${fichas} ficha${fichas > 1 ? 's' : ''} gratis — tu primer partido no te cuesta nada</div>
             </div>
           </div>
           <button class="btn btn-dorado btn-lg btn-block btn-completar-registro" onclick="completarRegistro()">Ir a los partidos</button>
@@ -2850,10 +2915,10 @@
         let usuarioGuardado;
         if (FS_LIVE) {
           usuarioGuardado = await fsAPI.register(app.datos);
-          app.creditos = 0;
+          app.creditos = usuarioGuardado.creditos ?? 1;
         } else {
           const codigoValido = /^FS-[A-Z]{2}\d{2}$/.test(app.datos.codigoRef.trim());
-          app.creditos = 0;
+          app.creditos = codigoValido ? 2 : 1;
           const entradaUsuario = { ...app.datos, creditos: app.creditos, membresia: null };
           const existente = app.usuarios.findIndex(u => u.email.toLowerCase() === app.datos.email.toLowerCase());
           if (existente >= 0) app.usuarios[existente] = entradaUsuario;
@@ -2872,7 +2937,9 @@
         guardarSesion();
         setTimeout(() => document.getElementById('partidos').scrollIntoView({ behavior: 'smooth', block: 'start' }), 320);
         const svgGift = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`;
-        mostrarToast(svgGift, `¡Bienvenido, ${app.usuario.nombre.split(' ')[0]}!`, 'Ya puedes reservar tu plaza en los partidos');
+        mostrarToast(svgGift, 'Bienvenido a FS', app.creditos >= 2
+          ? `Tienes ${app.creditos} fichas gratis — tu código de invitación ha funcionado`
+          : 'Tienes 1 ficha gratis para tu primer partido');
       } catch (e) {
         if (btn) { btn.disabled = false; btn.textContent = 'Ir a los partidos'; }
         const msg = e?.message?.includes('duplicate') ? 'Ya existe una cuenta con ese email.' : (e?.message || 'Error al crear la cuenta. Inténtalo de nuevo.');
@@ -2902,7 +2969,7 @@
       const avatarEl = document.getElementById('avatarNav');
 
       if (u.foto) {
-        avatarEl.innerHTML = `<img src="${u.foto}" alt="${esc(u.nombre)}">`;
+        avatarEl.innerHTML = `<img src="${esc(u.foto)}" alt="${esc(u.nombre)}">`;
       } else {
         avatarEl.textContent = ini;
       }
@@ -2911,6 +2978,9 @@
       document.getElementById('navPerfil').style.display = 'flex';
       document.getElementById('btnNavRegistro').style.display = 'none';
 
+      // Saldo de fichas visible
+      actualizarNavCreditos();
+      document.getElementById('navCreditos').style.display = 'flex';
     }
 
     function actualizarNavCreditos() {
@@ -3072,16 +3142,30 @@
       renderPanelLogros();
     }
 
-    async function cancelarPartido(id) {
+    function cancelarPartido(id) {
+      const p = app.partidos.find(x => x.id === id);
+      if (!p || !p.apuntado) return;
+      abrirConfirm({
+        titulo: '¿Cancelar tu plaza?',
+        sub:    `${p.ciudad} · ${p.dia} · ${p.hora}`,
+        texto:  'Si cancelas con más de 24 h de antelación, recuperas tu ficha. Tu plaza quedará libre para otro jugador.',
+        accion: 'Sí, cancelar plaza',
+        onOk:   () => ejecutarCancelacion(id),
+      });
+    }
+
+    async function ejecutarCancelacion(id) {
       const p = app.partidos.find(x => x.id === id);
       if (!p || !p.apuntado) return;
       p.apuntado = false;
       p.ocupadas = Math.max(0, p.ocupadas - 1);
+      app.creditos += 1;
       app.logros.partidosJugados = Math.max(0, app.logros.partidosJugados - 1);
+      actualizarNavCreditos();
       pintarPartidos();
       renderPanelLogros();
       await fsAPI.cancelarInscripcion(id);
-      mostrarToast(`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>`, 'Cancelado', 'Plaza liberada');
+      mostrarToast(`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>`, 'Plaza cancelada', `+1 ficha devuelta · Saldo: ${app.creditos}`);
     }
 
     function codigoRef(nombre) {
@@ -3099,7 +3183,7 @@
 
     function compartirWhatsApp() {
       const codigo = codigoRef(app.usuario.nombre);
-      const txt = encodeURIComponent(`Ven a jugar al futbol conmigo! Usa mi codigo ${codigo} en Football Society y los dos recibimos 1 ficha gratis\n\nhttps://ikgarcinuno19-glitch.github.io/Football-society/`);
+      const txt = encodeURIComponent(`Ven a jugar al futbol conmigo! Registrate con mi codigo ${codigo} en Football Society y los dos jugamos gratis: tu recibes 2 fichas y yo 1 mas\n\nhttps://ikgarcinuno19-glitch.github.io/Football-society/`);
       window.open(`https://wa.me/?text=${txt}`, '_blank');
     }
 
@@ -3402,7 +3486,7 @@
           const logrosData = data.logros?.[0] || { partidos_jugados: 0, mvps: 0 };
           app.registrado = true;
           app.usuario    = { ...data };
-          app.creditos   = 0;
+          app.creditos   = data.creditos ?? 0;
           app.membresia  = data.membresia !== 'none' ? data.membresia : null;
           app.logros     = { partidosJugados: logrosData.partidos_jugados ?? 0, mvps: logrosData.mvps ?? 0 };
           const ps = await fsAPI.getPartidos(data.id);
@@ -3410,7 +3494,7 @@
         } else {
           app.registrado = true;
           app.usuario    = saved;
-          app.creditos   = 0;
+          app.creditos   = 1;
           app.logros     = { partidosJugados: 0, mvps: 0 };
         }
         actualizarNavbar();
@@ -3535,31 +3619,29 @@
     window.addEventListener('hashchange', manejarHash);
 
     async function comprobarRetornoStripe() {
-      const pendiente = localStorage.getItem('fs_reserva_pendiente');
-      if (!pendiente) return;
-      localStorage.removeItem('fs_reserva_pendiente');
+      localStorage.removeItem('fs_reserva_pendiente'); // clave del flujo antiguo
+      localStorage.removeItem('fs_pago_pendiente');    // clave del flujo antiguo
+      const raw = localStorage.getItem('fs_compra_pendiente');
+      if (!raw) return;
+      localStorage.removeItem('fs_compra_pendiente');
       try {
-        const { partidoId, userId } = JSON.parse(pendiente);
-        if (FS_LIVE && userId && partidoId) {
-          await sb.from('inscripciones').insert({ usuario_id: userId, partido_id: partidoId });
-          const { data: pData } = await sb.from('partidos').select('ocupadas').eq('id', partidoId).single();
-          if (pData) {
-            await sb.from('partidos').update({ ocupadas: (pData.ocupadas || 0) + 1 }).eq('id', partidoId);
-          }
-          const { data: lData } = await sb.from('logros').select('partidos_jugados').eq('usuario_id', userId).single();
-          if (lData) {
-            await sb.from('logros').update({ partidos_jugados: (lData.partidos_jugados || 0) + 1, updated_at: new Date().toISOString() }).eq('usuario_id', userId);
-          }
+        const { fichas, userId, partidoId } = JSON.parse(raw);
+        if (!fichas || !userId) return;
+
+        if (FS_LIVE) {
+          const { data } = await sb.from('usuarios').select('creditos').eq('id', userId).single();
+          const nuevos = (data?.creditos || 0) + fichas;
+          await sb.from('usuarios').update({ creditos: nuevos }).eq('id', userId);
+          if (app.usuario?.id === userId) app.creditos = nuevos;
+        } else {
+          app.creditos += fichas;
         }
-        const p = app.partidos.find(x => x.id === partidoId);
-        if (p) {
-          p.apuntado = true;
-          p.ocupadas = Math.min(p.ocupadas + 1, p.total);
-          app.logros.partidosJugados += 1;
-          pintarPartidos();
-          pintarRanking();
+        actualizarNavCreditos();
+        mostrarToast(svgFichaIco, 'Pago recibido', `+${fichas} ficha${fichas > 1 ? 's' : ''} en tu cuenta`);
+
+        if (partidoId && app.usuario?.id === userId) {
+          await reservarConFicha(partidoId);
         }
-        mostrarToast(svgCheck, 'Plaza reservada', p ? `${p.ciudad} · ${p.dia} a las ${p.hora} · ${p.precio}€` : 'Pago confirmado');
       } catch(e) {}
     }
 
