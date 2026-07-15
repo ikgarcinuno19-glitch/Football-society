@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Football Society">
   <meta property="og:description" content="Juega fútbol cuando quieras. Sin organizar nada. Partidos en Bilbao y Laredo.">
-  <meta property="og:image" content="https://ikgarcinuno19-glitch.github.io/Football-society/logo-fs.png">
+  <meta property="og:image" content="https://i.imgur.com/OmiuqhO.jpeg">
   <meta property="og:url" content="https://ikgarcinuno19-glitch.github.io/Football-society/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" as="image" href="https://i.imgur.com/OmiuqhO.jpeg" fetchpriority="high">
@@ -654,7 +654,7 @@
     .cred-header { margin-bottom: 52px; }
     .cred-subtitulo { font-size: 1rem; color: var(--texto-suave); margin-top: 12px; max-width: 480px; line-height: 1.65; }
 
-    .cred-packs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 52px; }
+    .cred-packs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 12px; }
     .cred-pack { background: var(--sup-2); border: 1px solid var(--borde); border-top: 2px solid var(--borde-fuerte); border-radius: 16px; padding: 26px 28px; cursor: pointer; transition: border-color var(--t), transform var(--t); text-align: left; }
     .cred-pack:hover { border-top-color: var(--dorado); transform: translateY(-2px); }
     .cred-pack:active { transform: scale(0.98); }
@@ -669,30 +669,6 @@
     .cred-pack-btn { background: transparent; border: 1px solid var(--borde-fuerte); color: var(--texto); border-radius: 9px; padding: 9px 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all var(--t); }
     .cred-pack-btn:hover { border-color: var(--dorado); color: var(--dorado); }
 
-    .cred-mem-titulo { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texto-muted); }
-    .cred-mem-sub { font-size: 0.76rem; font-weight: 400; text-transform: none; letter-spacing: 0; }
-
-    .cred-mem-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--borde); border-radius: 18px; overflow: hidden; }
-    .cred-mem-card { padding: 36px 28px; border-right: 1px solid var(--borde); position: relative; }
-    .cred-mem-card:last-child { border-right: none; }
-    .cred-mem-popular { background: var(--sup-2); }
-    .cred-popular-tag { position: absolute; top: 20px; right: 20px; background: var(--dorado); color: #000; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
-    .cred-mem-tipo { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; margin-bottom: 18px; }
-    .rookie { color: var(--verde); }
-    .pro    { color: var(--dorado); }
-    .elite  { color: #c8c8c8; }
-    .cred-mem-precio-wrap { display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px; }
-    .cred-mem-num { font-family: 'Oswald', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--texto); line-height: 1; }
-    .cred-mem-mes { font-size: 0.78rem; color: var(--texto-suave); }
-    .cred-mem-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-    .cred-mem-lista li { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--texto-suave); }
-    .cred-mem-lista li svg { flex-shrink: 0; stroke: var(--verde); }
-    .cred-mem-btn { width: 100%; padding: 11px; border-radius: 10px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; background: transparent; border: 1px solid var(--borde-fuerte); color: var(--texto); cursor: pointer; font-family: inherit; transition: all var(--t); }
-    .cred-mem-btn:hover { border-color: var(--texto-suave); }
-    .cred-mem-btn:active { transform: scale(0.97); }
-    .cred-mem-btn-pro { background: var(--dorado); border-color: var(--dorado); color: #000; }
-    .cred-mem-btn-pro:hover { background: var(--dorado-claro); border-color: var(--dorado-claro); }
-
     .sf-pack { width: 100%; display: flex; align-items: center; justify-content: space-between; background: var(--sup-2); border: 1px solid var(--borde); border-radius: 12px; padding: 16px 18px; cursor: pointer; font-family: inherit; transition: border-color var(--t), transform var(--t); text-align: left; }
     .sf-pack:hover { border-color: var(--borde-fuerte); transform: translateY(-1px); }
     .sf-pack:active { transform: scale(0.98); }
@@ -704,9 +680,6 @@
 
     @media (max-width: 700px) {
       .cred-packs-row { grid-template-columns: 1fr; }
-      .cred-mem-grid { grid-template-columns: 1fr; border-radius: 14px; }
-      .cred-mem-card { border-right: none; border-bottom: 1px solid var(--borde); }
-      .cred-mem-card:last-child { border-bottom: none; }
     }
 
     /* ==================== RANKING ==================== */
@@ -884,10 +857,6 @@
     #btnTop:active { transform:scale(0.93); }
 
     /* ==================== NAV MEMBERSHIP BADGE ==================== */
-    .nav-mem-badge { font-size:0.6rem; font-weight:800; letter-spacing:0.07em; padding:1px 5px; border-radius:3px; margin-left:5px; vertical-align:middle; }
-    .nav-mem-badge.rookie { background:#4B5563; color:#D1D5DB; }
-    .nav-mem-badge.pro    { background:var(--dorado); color:#080808; }
-    .nav-mem-badge.elite  { background:linear-gradient(90deg,#a78bfa,#ec4899); color:#fff; }
 
     /* ==================== LOGO IMAGEN ==================== */
     .logo-img { height: 52px; width: auto; display: block; }
@@ -1109,7 +1078,6 @@
         <button class="avatar-btn" onclick="toggleMenuAvatar()">
           <div class="avatar" id="avatarNav"></div>
           <span class="nav-nombre" id="navNombre"></span>
-          <span class="nav-mem-badge" id="navMemBadge" style="display:none"></span>
         </button>
         <div class="avatar-menu" id="avatarMenu">
           <button onclick="abrirPerfil('logros'); cerrarMenuAvatar()">
@@ -2348,34 +2316,8 @@
       { ini:'AE', nombre:'Aitor Elizegi',    ciudad:'Bilbao',  partidos:14, pts:70  },
       { ini:'GZ', nombre:'Gorka Zubikarai',  ciudad:'Laredo',  partidos:12, pts:61  },
     ];
-    /* ==================== FICHAS Y MEMBRESÍAS ==================== */
+    /* ==================== ICONOS COMPARTIDOS ==================== */
     const svgCheck = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-
-    function actualizarBotonesMem() {
-      document.querySelectorAll('[onclick^="activarMembresia"]').forEach(btn => {
-        const match = btn.getAttribute('onclick').match(/'(\w+)'/);
-        if (!match) return;
-        const t = match[1];
-        const activo = app.membresia === t;
-        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
-        btn.innerHTML = activo ? `${svgCheck} Activo` : btn.dataset.orig;
-        btn.style.opacity = activo ? '0.55' : '';
-        btn.style.cursor  = activo ? 'default' : '';
-        btn.disabled = activo;
-      });
-      // Nav badge
-      const badge = document.getElementById('navMemBadge');
-      if (!badge) return;
-      if (app.membresia) {
-        const labels = { ROOKIE:'ROOKIE', PRO:'PRO', ELITE:'ÉLITE' };
-        const cls    = { ROOKIE:'rookie', PRO:'pro', ELITE:'elite' };
-        badge.textContent  = labels[app.membresia];
-        badge.className    = `nav-mem-badge ${cls[app.membresia]}`;
-        badge.style.display = 'inline';
-      } else {
-        badge.style.display = 'none';
-      }
-    }
 
     const rfState  = { periodo:'mes', ciudad:'todos' };
     const rfEscala = { semana:0.22, mes:1, temporada:7 };
@@ -3691,10 +3633,8 @@
       document.getElementById('navPerfil').style.display    = 'none';
       document.getElementById('navCreditos').style.display  = 'none';
       document.getElementById('btnNavRegistro').style.display = '';
-      document.getElementById('navMemBadge').style.display  = 'none';
       pintarPartidos();
       pintarRanking();
-      actualizarBotonesMem();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       mostrarToast(svgCheck, 'Sesión cerrada', 'Hasta pronto');
     }
