@@ -911,6 +911,15 @@
     .chk-priv input { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--dorado); cursor: pointer; flex-shrink: 0; }
     .chk-priv a { color: var(--dorado); text-decoration: underline; text-underline-offset: 2px; }
     .chk-priv a:hover { color: var(--dorado-claro); }
+
+    /* ==================== PÁGINAS LEGALES ==================== */
+    .legal-body { max-width: 760px; }
+    .legal-body h3 { font-size: 1rem; font-weight: 700; color: var(--texto); margin: 30px 0 10px; }
+    .legal-body p, .legal-body li { font-size: 0.88rem; color: var(--texto-suave); line-height: 1.8; }
+    .legal-body p { margin-bottom: 12px; }
+    .legal-body ul { list-style: disc; padding-left: 20px; margin: 10px 0 16px; }
+    .legal-body a { color: var(--dorado); text-decoration: underline; text-underline-offset: 2px; }
+    .legal-fecha { font-size: 0.72rem; color: var(--texto-muted); margin-top: 36px; }
     .pwa-sep { text-align: center; font-size: 0.78rem; color: var(--texto-muted); margin-bottom: 18px; }
     .pwa-tabs { display: flex; border: 1px solid var(--borde); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
     .pwa-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.84rem; font-weight: 700; cursor: pointer; background: none; border: none; color: var(--texto-muted); font-family: inherit; transition: all var(--t); }
@@ -1708,6 +1717,105 @@
   </section>
 
 
+  <!-- ==================== AVISO LEGAL ==================== -->
+  <div class="bg-sup" id="aviso-legal">
+    <div class="seccion">
+      <div class="pagina-back">
+        <a href="#partidos" class="pagina-back-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+      <div class="sec-header">
+        <div class="etiqueta">Legal</div>
+        <h2 class="titulo-seccion">Aviso legal</h2>
+      </div>
+      <div class="legal-body">
+        <h3>1. Titular del sitio</h3>
+        <p>Football Society (en adelante, «FS») es un proyecto en fase de desarrollo dedicado a la organización de partidos de fútbol amateur en el País Vasco y Cantabria. Contacto: <a href="mailto:footballsocietyfs@gmail.com">footballsocietyfs@gmail.com</a> · Teléfono: 623 80 52 95.</p>
+        <h3>2. Objeto</h3>
+        <p>Este sitio web permite consultar partidos disponibles, registrarse como jugador y reservar plaza en los partidos organizados por FS. El acceso y la navegación son gratuitos; la reserva de plaza se realiza mediante el sistema de fichas descrito en la sección de precios.</p>
+        <h3>3. Alojamiento</h3>
+        <p>El sitio se aloja en GitHub Pages (GitHub, Inc.). Los datos de usuarios se almacenan en Supabase (infraestructura en la Unión Europea).</p>
+        <h3>4. Propiedad intelectual</h3>
+        <p>Los contenidos de este sitio (textos, logotipos, fotografías propias y diseño) pertenecen a FS o cuentan con autorización de uso. No está permitida su reproducción sin consentimiento previo.</p>
+        <h3>5. Responsabilidad</h3>
+        <p>FS actúa como organizador de encuentros deportivos amateur. Cada jugador participa bajo su propia responsabilidad y declara encontrarse en condiciones físicas adecuadas para la práctica deportiva.</p>
+        <p class="legal-fecha">Última actualización: 15 de julio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== POLÍTICA DE PRIVACIDAD ==================== -->
+  <div class="bg-sup" id="privacidad">
+    <div class="seccion">
+      <div class="pagina-back">
+        <a href="#partidos" class="pagina-back-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+      <div class="sec-header">
+        <div class="etiqueta">Legal</div>
+        <h2 class="titulo-seccion">Política de privacidad</h2>
+      </div>
+      <div class="legal-body">
+        <h3>1. Responsable del tratamiento</h3>
+        <p>Football Society · <a href="mailto:footballsocietyfs@gmail.com">footballsocietyfs@gmail.com</a></p>
+        <h3>2. Datos que recogemos</h3>
+        <ul>
+          <li>Nombre completo, correo electrónico y teléfono móvil.</li>
+          <li>Contraseña (almacenada de forma cifrada, nunca en texto plano).</li>
+          <li>Posición, nivel de juego y disponibilidad horaria.</li>
+          <li>Foto de perfil, si decides subirla.</li>
+          <li>Historial de partidos: reservas, cancelaciones y logros.</li>
+          <li>Ubicación aproximada, solo si concedes el permiso del navegador y únicamente para ordenar los campos por cercanía. No se almacena en nuestros servidores.</li>
+        </ul>
+        <h3>3. Finalidad y base legal</h3>
+        <p>Usamos tus datos exclusivamente para gestionar tu cuenta, organizar los partidos (formar equipos, controlar plazas) y contactarte sobre los encuentros en los que participas. La base legal es tu consentimiento, otorgado al marcar la casilla de aceptación en el registro.</p>
+        <h3>4. Destinatarios</h3>
+        <p>Los datos se almacenan en Supabase (UE). Los pagos con tarjeta se procesan directamente en Stripe; FS nunca ve ni almacena los datos de tu tarjeta.</p>
+        <h3>5. Conservación</h3>
+        <p>Conservamos tus datos mientras mantengas tu cuenta activa. Puedes solicitar su eliminación en cualquier momento.</p>
+        <h3>6. Tus derechos</h3>
+        <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href="mailto:footballsocietyfs@gmail.com">footballsocietyfs@gmail.com</a>. También puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+        <p class="legal-fecha">Última actualización: 15 de julio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== POLÍTICA DE COOKIES ==================== -->
+  <div class="bg-sup" id="cookies">
+    <div class="seccion">
+      <div class="pagina-back">
+        <a href="#partidos" class="pagina-back-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+      <div class="sec-header">
+        <div class="etiqueta">Legal</div>
+        <h2 class="titulo-seccion">Política de cookies</h2>
+      </div>
+      <div class="legal-body">
+        <h3>1. Cookies propias</h3>
+        <p>Este sitio no utiliza cookies propias de seguimiento ni de publicidad.</p>
+        <h3>2. Almacenamiento local</h3>
+        <p>Usamos el almacenamiento local del navegador (localStorage) con una única finalidad técnica: mantener tu sesión iniciada entre visitas. Puedes borrarlo en cualquier momento cerrando sesión o limpiando los datos del navegador.</p>
+        <h3>3. Servicios de terceros</h3>
+        <ul>
+          <li><strong>Google Fonts</strong>: carga las tipografías del sitio y puede establecer cookies técnicas propias.</li>
+          <li><strong>Stripe</strong>: al pagar con tarjeta se te redirige a Stripe, que utiliza sus propias cookies de seguridad.</li>
+          <li><strong>Imgur</strong>: sirve las fotografías del sitio.</li>
+        </ul>
+        <p class="legal-fecha">Última actualización: 15 de julio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="footer-grid" style="grid-template-columns:2fr 1fr 1fr">
@@ -1747,7 +1855,7 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© 2026 Football Society SL. Todos los derechos reservados.</p>
-      <div class="footer-legal"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div>
+      <div class="footer-legal"><a href="#aviso-legal">Aviso legal</a><a href="#privacidad">Privacidad</a><a href="#cookies">Cookies</a></div>
     </div>
   </footer>
 
@@ -3657,7 +3765,7 @@
     /* ==================== ARRANQUE ==================== */
     /* ── Hash routing: secciones secundarias como "páginas" ── */
     const SECS_HOME    = ['inicio', 'que-ofrecemos', 'partidos', 'como-funciona', 'campos'];
-    const SECS_PAGINA  = ['faq', 'clasificacion', 'torneos', 'alquiler', 'creditos'];
+    const SECS_PAGINA  = ['faq', 'clasificacion', 'torneos', 'alquiler', 'creditos', 'aviso-legal', 'privacidad', 'cookies'];
 
     function manejarHash() {
       const hash     = location.hash.slice(1);
