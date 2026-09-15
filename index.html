@@ -270,7 +270,8 @@
     .lock-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
     .lock-card p { font-size: 0.84rem; color: var(--texto-suave); margin-bottom: 22px; line-height: 1.6; }
 
-    .ciudad-bloque { margin-bottom: 44px; }
+    #contenedorPartidos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .ciudad-bloque { margin-bottom: 0; }
     .ciudad-titulo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
     .ciudad-nombre { font-size: 0.95rem; font-weight: 700; }
     .ciudad-sub { font-size: 0.78rem; color: var(--texto-suave); }
@@ -978,7 +979,8 @@
       .sec-header { margin-bottom: 36px; }
       .fila-partidos { grid-template-columns: 1fr; gap: 12px; }
       .card-foto { height: 120px; }
-      .ciudad-bloque { margin-bottom: 28px; }
+      #contenedorPartidos { grid-template-columns: 1fr; }
+      .ciudad-bloque { margin-bottom: 0; }
 
       .cred-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
@@ -1202,6 +1204,19 @@
   </section>
 
 
+  <!-- ==================== PARTIDOS ==================== -->
+  <section class="seccion" id="partidos">
+    <div class="partidos-head">
+      <div>
+        <div class="etiqueta">Esta semana</div>
+        <h2 class="titulo-seccion">Partidos disponibles</h2>
+      </div>
+      <div class="partidos-estado" id="estadoPartidos"></div>
+    </div>
+    <div id="contenedorPartidos"></div>
+  </section>
+
+
   <!-- ==================== QUÉ OFRECEMOS ==================== -->
   <section class="seccion" id="que-ofrecemos">
     <div class="sec-header">
@@ -1246,19 +1261,6 @@
       </div>
 
     </div>
-  </section>
-
-
-  <!-- ==================== PARTIDOS ==================== -->
-  <section class="seccion" id="partidos">
-    <div class="partidos-head">
-      <div>
-        <div class="etiqueta">Esta semana</div>
-        <h2 class="titulo-seccion">Partidos disponibles</h2>
-      </div>
-      <div class="partidos-estado" id="estadoPartidos"></div>
-    </div>
-    <div id="contenedorPartidos"></div>
   </section>
 
 
@@ -3682,7 +3684,7 @@
 
     /* ==================== ARRANQUE ==================== */
     /* ── Hash routing: secciones secundarias como "páginas" ── */
-    const SECS_HOME    = ['inicio', 'que-ofrecemos', 'partidos', 'como-funciona'];
+    const SECS_HOME    = ['inicio', 'partidos', 'que-ofrecemos', 'como-funciona'];
     const SECS_PAGINA  = ['faq', 'clasificacion', 'torneos', 'alquiler', 'creditos', 'aviso-legal', 'privacidad', 'cookies'];
 
     function manejarHash() {
