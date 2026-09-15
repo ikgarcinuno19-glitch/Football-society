@@ -581,51 +581,6 @@
     .badge-nombre { font-size: 0.7rem; font-weight: 700; margin-bottom: 2px; color: var(--texto); }
     .badge-desc { font-size: 0.63rem; color: var(--texto-suave); line-height: 1.4; }
 
-    /* ==================== CAMPOS / UBICACIONES ==================== */
-    .campos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .campo-card { position: relative; height: 420px; border-radius: 18px; overflow: hidden; cursor: pointer; }
-    .campo-card .bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.5s ease;
-    }
-    .campo-card:hover .bg { transform: scale(1.04); }
-    .campo-card .ov {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.35) 55%, transparent 100%);
-    }
-    .campo-card .txt { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 28px 30px; }
-    .campo-tipo {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(6px);
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.8); padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
-    }
-    .campo-nombre {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      font-weight: 700; text-transform: uppercase;
-      color: #fff; line-height: 1; margin-bottom: 6px;
-    }
-    .campo-sub { font-size: 0.88rem; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
-    .campo-partidos-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(212,168,42,0.15); border: 1px solid rgba(212,168,42,0.3);
-      color: var(--dorado); font-size: 0.72rem; font-weight: 700;
-      padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
-    }
-    .campo-cta {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
-      text-transform: uppercase; color: #fff;
-      background: none; border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px; padding: 10px 18px; cursor: pointer;
-      font-family: inherit; transition: all var(--t);
-    }
-    .campo-cta:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
-    .campo-cta:active { transform: scale(0.97); }
-    @media (max-width: 700px) { .campos-grid { grid-template-columns: 1fr; } .campo-card { height: 340px; } }
 
     /* ==================== QUÉ OFRECEMOS ==================== */
     .ofertas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -885,7 +840,7 @@
       .notif-inline { flex-direction:column; align-items:stretch; }
       .notif-inline-form { flex-direction:column; }
       .notif-inline-inp { width:100%; }
-      .campos-grid { grid-template-columns:1fr; }
+
       .testi-grid { grid-template-columns:1fr; }
       .testi-card { border-right:none; border-bottom:1px solid var(--borde); }
       .testi-card:last-child { border-bottom:none; }
@@ -1024,7 +979,7 @@
       .fila-partidos { grid-template-columns: 1fr; gap: 12px; }
       .card-foto { height: 120px; }
       .ciudad-bloque { margin-bottom: 28px; }
-      .campo-card { height: 300px; }
+
       .cred-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
     @media (max-width: 480px) {
@@ -1114,7 +1069,6 @@
     <!-- Enlaces principales -->
     <ul class="nav-links">
       <li><a href="#partidos">Partidos</a></li>
-      <li><a href="#campos">Campos</a></li>
     </ul>
 
     <!-- Derecha: créditos + perfil/login + Instagram + hamburguesa -->
@@ -1411,57 +1365,6 @@
   </section>
 
 
-  <!-- ==================== CAMPOS / UBICACIONES ==================== -->
-  <section class="seccion" id="campos">
-    <div class="sec-header">
-      <div class="etiqueta">Todo listo para ti</div>
-      <h2 class="titulo-seccion">Campos reservados. Solo falta que vengas.</h2>
-    </div>
-    <div class="campos-grid">
-
-      <div class="campo-card" data-ciudad="Laredo">
-        <div class="bg" style="background-image:url('https://i.imgur.com/YEw3haK.jpeg')"></div>
-        <div class="ov"></div>
-        <div class="txt">
-          <div class="campo-tipo">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-            Laredo · Arena de playa · 5v5
-          </div>
-          <h3 class="campo-nombre">Playa de<br>La Salvé</h3>
-          <div class="campo-partidos-badge">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            2 partidos esta semana
-          </div>
-          <button class="campo-cta" onclick="verPartidosCiudad('Laredo')">
-            Ver partidos en Laredo
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="campo-card" data-ciudad="Bilbao">
-        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=900&auto=format&q=80')"></div>
-        <div class="ov"></div>
-        <div class="txt">
-          <div class="campo-tipo">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-            Bilbao · Césped artificial · 7v7
-          </div>
-          <h3 class="campo-nombre">Campo<br>Etxezuri</h3>
-          <p class="campo-sub">Deusto, Bilbao</p>
-          <div class="campo-partidos-badge">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            3 partidos esta semana
-          </div>
-          <button class="campo-cta" onclick="verPartidosCiudad('Bilbao')">
-            Ver partidos en Bilbao
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
 
 
@@ -1533,10 +1436,10 @@
 
       <details class="faq-item">
         <summary class="faq-q">
-          ¿Qué pasa si llueve en Laredo?
+          ¿Qué pasa si llueve?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Si el tiempo lo impide, avisamos con al menos 3 horas de antelación y se cancela sin coste. En Bilbao, el campo Etxezuri tiene cubierta parcial, así que rara vez se suspende.</p>
+        <p class="faq-r">Si el tiempo lo impide, avisamos con al menos 3 horas de antelación y se cancela sin coste. Los campos de césped artificial como Mayona y Deusto rara vez se suspenden.</p>
       </details>
 
       <details class="faq-item">
@@ -1560,7 +1463,7 @@
           ¿Habrá mas partidos y ubicaciones?
           <div class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </summary>
-        <p class="faq-r">Estamos arrancando con Laredo y Bilbao. Si hay demanda, abriremos mas ciudades y horarios. Regístrate y nos ayudas a crecer.</p>
+        <p class="faq-r">Estamos arrancando con Mayona y Deusto. Si hay demanda, abriremos mas ciudades y horarios. Regístrate y nos ayudas a crecer.</p>
       </details>
 
     </div>
@@ -1589,8 +1492,8 @@
           </div>
           <div class="rfiltros">
             <button class="rfiltro activo" data-tipo="ciudad" data-valor="todos" onclick="setRankingFiltro('ciudad','todos')">Todos</button>
-            <button class="rfiltro" data-tipo="ciudad" data-valor="bilbao" onclick="setRankingFiltro('ciudad','bilbao')">Bilbao</button>
-            <button class="rfiltro" data-tipo="ciudad" data-valor="laredo" onclick="setRankingFiltro('ciudad','laredo')">Laredo</button>
+            <button class="rfiltro" data-tipo="ciudad" data-valor="mayona" onclick="setRankingFiltro('ciudad','mayona')">Mayona</button>
+            <button class="rfiltro" data-tipo="ciudad" data-valor="deusto" onclick="setRankingFiltro('ciudad','deusto')">Deusto</button>
           </div>
         </div>
       </div>
@@ -1624,7 +1527,7 @@
         <div class="torneos-formato">
           <div>
             <div class="torneos-tipo">Liga 5v5</div>
-            <div class="torneos-sub">Txurdinaga · Bilbao</div>
+            <div class="torneos-sub">Mayona · Bilbao Kirolak</div>
           </div>
           <p class="torneos-desc">Grupos de 4 equipos, ida y vuelta. Clasificación semanal con ascenso y descenso de división.</p>
           <div class="torneos-lugar">
@@ -1640,7 +1543,7 @@
         <div class="torneos-formato">
           <div>
             <div class="torneos-tipo">Copa 7v7</div>
-            <div class="torneos-sub">Etxezuri · Deusto</div>
+            <div class="torneos-sub">Universidad de Deusto</div>
           </div>
           <p class="torneos-desc">Eliminatorias directas al estilo europeo. Cuartos, semis y gran final en un mismo fin de semana.</p>
           <div class="torneos-lugar">
@@ -1656,7 +1559,7 @@
         <div class="torneos-formato">
           <div>
             <div class="torneos-tipo">Beach 3v3</div>
-            <div class="torneos-sub">Playa La Salvé · Laredo</div>
+            <div class="torneos-sub">Mayona · Bilbao Kirolak</div>
           </div>
           <p class="torneos-desc">Fútbol playa informal, con música y ambiente. Equipos de 3, sin árbitro, máxima diversión.</p>
           <div class="torneos-lugar">
@@ -1726,8 +1629,8 @@
     <div class="alquiler-campos" style="margin-bottom:32px">
       <div class="alquiler-campo">
         <div>
-          <div class="alquiler-campo-nombre">Etxezuri</div>
-          <div class="alquiler-campo-ciudad">Bilbao · Césped artificial 7v7</div>
+          <div class="alquiler-campo-nombre">Mayona</div>
+          <div class="alquiler-campo-ciudad">Bilbao Kirolak · Césped artificial 7v7</div>
         </div>
         <div class="alquiler-campo-precio">22 <span>€/hora · IVA incluido</span></div>
         <div class="alquiler-campo-features">
@@ -1739,14 +1642,14 @@
       </div>
       <div class="alquiler-campo">
         <div>
-          <div class="alquiler-campo-nombre">Playa de La Salvé</div>
-          <div class="alquiler-campo-ciudad">Laredo · Arena natural 5v5</div>
+          <div class="alquiler-campo-nombre">Universidad de Deusto</div>
+          <div class="alquiler-campo-ciudad">Deusto · Césped artificial 7v7</div>
         </div>
-        <div class="alquiler-campo-precio">18 <span>€/hora · IVA incluido</span></div>
+        <div class="alquiler-campo-precio">22 <span>€/hora · IVA incluido</span></div>
         <div class="alquiler-campo-features">
-          <span class="alquiler-campo-tag">Al aire libre</span>
-          <span class="alquiler-campo-tag">Vistas al mar</span>
-          <span class="alquiler-campo-tag">Portería incluida</span>
+          <span class="alquiler-campo-tag">Vestuarios</span>
+          <span class="alquiler-campo-tag">Iluminación</span>
+          <span class="alquiler-campo-tag">Balón incluido</span>
         </div>
       </div>
     </div>
@@ -2152,11 +2055,8 @@
       distanciasKm: null, // { ciudad: km } cuando el usuario comparte ubicación
 
       partidos: [
-        { id: 'bil-jue', ciudad: 'Bilbao', campo: 'Etxezuri', dia: 'Jue 3 Jul', hora: '19:00', formato: '7v7', precio: 5, total: 14, ocupadas: 8,  apuntado: false },
-        { id: 'bil-sab', ciudad: 'Bilbao', campo: 'Etxezuri', dia: 'Sáb 5 Jul', hora: '11:00', formato: '7v7', precio: 5, total: 14, ocupadas: 5,  apuntado: false },
-        { id: 'bil-noc', ciudad: 'Bilbao', campo: 'Etxezuri', dia: 'Sáb 5 Jul', hora: '20:00', formato: '7v7', precio: 5, total: 14, ocupadas: 11, apuntado: false },
-        { id: 'lar-sab', ciudad: 'Laredo', campo: 'Playa de La Salvé',          dia: 'Sáb 5 Jul', hora: '18:00', formato: '5v5', precio: 5, total: 10, ocupadas: 6,  apuntado: false },
-        { id: 'lar-dom', ciudad: 'Laredo', campo: 'Playa de La Salvé',          dia: 'Dom 6 Jul', hora: '12:00', formato: '5v5', precio: 5, total: 10, ocupadas: 3,  apuntado: false },
+        { id: 'may-mar', ciudad: 'Mayona', campo: 'Bilbao Kirolak', dia: 'Mar 16 Sep', hora: '15:00', formato: '7v7', precio: 5, total: 14, ocupadas: 6, apuntado: false },
+        { id: 'deu-mar', ciudad: 'Deusto', campo: 'Universidad de Deusto', dia: 'Mar 16 Sep', hora: '19:00', formato: '7v7', precio: 5, total: 14, ocupadas: 9, apuntado: false },
       ],
 
       amigos: [
@@ -2172,7 +2072,7 @@
         ],
         'a2': [
           { mio: false, texto: '¿Quedamos el fin de semana?', hora: '10:15' },
-          { mio: true,  texto: 'Hay partido en Laredo el domingo a las 12', hora: '10:22' },
+          { mio: true,  texto: 'Hay partido en Deusto el martes a las 19', hora: '10:22' },
         ],
         'a3': [
           { mio: false, texto: '¿Apuntado el sábado?', hora: '9:45' },
@@ -2186,14 +2086,14 @@
 
     // Imágenes de fondo por ciudad
     const imgCiudad = {
-      'Bilbao': 'https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=600&auto=format&q=75',
-      'Laredo': 'https://i.imgur.com/NGDyFKr.jpeg',
+      'Mayona': 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=600&auto=format&q=75',
+      'Deusto': 'https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=600&auto=format&q=75',
     };
 
     /* ==================== GEOLOCALIZACIÓN ==================== */
     const coordsCampos = {
-      'Laredo': { lat: 43.4073, lon: -3.4312 }, // Playa de La Salvé
-      'Bilbao': { lat: 43.2627, lon: -2.9253 }, // Etxezuri
+      'Mayona': { lat: 43.3340, lon: -2.9910 },
+      'Deusto': { lat: 43.2710, lon: -2.9380 },
     };
 
     function kmEntre(lat1, lon1, lat2, lon2) {
@@ -2221,13 +2121,7 @@
       });
     }
 
-    function ordenarCamposPorCercania() {
-      const grid = document.querySelector('.campos-grid');
-      if (!grid || !app.distanciasKm) return;
-      [...grid.children]
-        .sort((a, b) => (app.distanciasKm[a.dataset.ciudad] ?? 1e9) - (app.distanciasKm[b.dataset.ciudad] ?? 1e9))
-        .forEach(el => grid.appendChild(el));
-    }
+    function ordenarCamposPorCercania() {}
 
     // Definición de badges
     const _icoStar   = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
@@ -2276,7 +2170,7 @@
         ciudades = ciudades.sort((a, b) => (app.distanciasKm[a] ?? 1e9) - (app.distanciasKm[b] ?? 1e9));
       }
       const svgPin = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>`;
-      const icos = { 'Bilbao': svgPin, 'Laredo': svgPin };
+      const icos = { 'Mayona': svgPin, 'Deusto': svgPin };
       let html = '';
 
       if (filtro) {
@@ -2366,9 +2260,8 @@
 
     function fantasmas() {
       return [
-        { hora: '19:00', dia: 'Jue 3 Jul', img: imgCiudad['Bilbao'] },
-        { hora: '11:00', dia: 'Sáb 5 Jul', img: imgCiudad['Bilbao'] },
-        { hora: '18:00', dia: 'Sáb 5 Jul', img: imgCiudad['Laredo'] },
+        { hora: '15:00', dia: 'Mar 16 Sep', img: imgCiudad['Mayona'] },
+        { hora: '19:00', dia: 'Mar 16 Sep', img: imgCiudad['Deusto'] },
       ].map(f => `
         <div class="partido-card">
           <div class="card-foto" style="background-image:url('${f.img}')">
@@ -2387,15 +2280,15 @@
 
     /* ==================== RANKING ==================== */
     const rankingBase = [
-      { ini:'AH', nombre:'Ander Herrera',    ciudad:'Bilbao',  partidos:28, pts:145 },
-      { ini:'KA', nombre:'Kepa Azpilikueta', ciudad:'Bilbao',  partidos:24, pts:122 },
-      { ini:'JU', nombre:'Jon Uriarte',      ciudad:'Laredo',  partidos:22, pts:110 },
-      { ini:'BE', nombre:'Beñat Etxebarria', ciudad:'Bilbao',  partidos:21, pts:108 },
+      { ini:'AH', nombre:'Ander Herrera',    ciudad:'Mayona',  partidos:28, pts:145 },
+      { ini:'KA', nombre:'Kepa Azpilikueta', ciudad:'Deusto',  partidos:24, pts:122 },
+      { ini:'JU', nombre:'Jon Uriarte',      ciudad:'Mayona',  partidos:22, pts:110 },
+      { ini:'BE', nombre:'Beñat Etxebarria', ciudad:'Deusto',  partidos:21, pts:108 },
       { ini:'MZ', nombre:'Mikel Zabala',     ciudad:'Deusto',  partidos:19, pts:96  },
-      { ini:'OA', nombre:'Oier Aduriz',      ciudad:'Laredo',  partidos:17, pts:89  },
-      { ini:'IM', nombre:'Iñigo Martínez',   ciudad:'Bilbao',  partidos:15, pts:77  },
-      { ini:'AE', nombre:'Aitor Elizegi',    ciudad:'Bilbao',  partidos:14, pts:70  },
-      { ini:'GZ', nombre:'Gorka Zubikarai',  ciudad:'Laredo',  partidos:12, pts:61  },
+      { ini:'OA', nombre:'Oier Aduriz',      ciudad:'Mayona',  partidos:17, pts:89  },
+      { ini:'IM', nombre:'Iñigo Martínez',   ciudad:'Deusto',  partidos:15, pts:77  },
+      { ini:'AE', nombre:'Aitor Elizegi',    ciudad:'Mayona',  partidos:14, pts:70  },
+      { ini:'GZ', nombre:'Gorka Zubikarai',  ciudad:'Deusto',  partidos:12, pts:61  },
     ];
     /* ==================== ICONOS COMPARTIDOS ==================== */
     const svgCheck = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
@@ -2416,10 +2309,10 @@
         partidos: Math.round(r.partidos * escala),
       }));
 
-      if (rfState.ciudad === 'bilbao') {
-        lista = lista.filter(r => r.ciudad === 'Bilbao' || r.ciudad === 'Deusto');
-      } else if (rfState.ciudad === 'laredo') {
-        lista = lista.filter(r => r.ciudad === 'Laredo');
+      if (rfState.ciudad === 'mayona') {
+        lista = lista.filter(r => r.ciudad === 'Mayona');
+      } else if (rfState.ciudad === 'deusto') {
+        lista = lista.filter(r => r.ciudad === 'Deusto');
       }
       lista = lista.slice(0, lim);
 
@@ -3076,8 +2969,10 @@
       else if (!FS_LIVE && app.usuarios.some(u => u.email.toLowerCase() === d.email.toLowerCase().trim())) {
         ok = false; marcarError('inp-email','err-email','Ya existe una cuenta con este email — inicia sesión');
       } else if (FS_LIVE) {
-        const { data } = await sb.from('usuarios').select('id').eq('email', d.email.toLowerCase().trim()).maybeSingle();
-        if (data) { ok = false; marcarError('inp-email','err-email','Ya existe una cuenta con este email — inicia sesión'); }
+        try {
+          const { data } = await sb.from('usuarios').select('id').eq('email', d.email.toLowerCase().trim()).maybeSingle();
+          if (data) { ok = false; marcarError('inp-email','err-email','Ya existe una cuenta con este email — inicia sesión'); }
+        } catch (_) {}
       }
       if (!d.telefono.trim() || d.telefono.length < 9)  { ok = false; marcarError('inp-telf','err-telf','Teléfono no válido'); }
       if (d.contrasena.length < 6)                       { ok = false; marcarError('inp-pass','err-pass','Mínimo 6 caracteres'); }
@@ -3133,7 +3028,9 @@
           : 'Tienes 1 ficha gratis para tu primer partido');
       } catch (e) {
         if (btn) { btn.disabled = false; btn.textContent = 'Ir a los partidos'; }
-        const msg = e?.message?.includes('duplicate') ? 'Ya existe una cuenta con ese email.' : (e?.message || 'Error al crear la cuenta. Inténtalo de nuevo.');
+        const msg = e?.message?.includes('duplicate') ? 'Ya existe una cuenta con ese email.'
+          : e?.message?.includes('Failed to fetch') ? 'No se pudo conectar con el servidor. Comprueba tu conexión o inténtalo en unos minutos.'
+          : (e?.message || 'Error al crear la cuenta. Inténtalo de nuevo.');
         mostrarAlert(msg);
       }
     }
@@ -3381,7 +3278,7 @@
     function notificarme(tipo) {
       const info = {
         torneos:  { t:'Torneos FS — en camino',   s:'Lanzamos los primeros torneos en septiembre. Déjanos tu email y eres el primero en enterarte.' },
-        alquiler: { t:'Alquiler de campos',        s:'Reserva campos por horas para tu equipo. Disponible próximamente en Bilbao y Laredo.' },
+        alquiler: { t:'Alquiler de campos',        s:'Reserva campos por horas para tu equipo. Disponible próximamente en Mayona y Deusto.' },
         arbitro:  { t:'Árbitros y coordinadores', s:'¿Quieres arbitrar partidos FS? Déjanos tu contacto y te llamamos antes de la próxima temporada.' },
         campo:    { t:'Propón un campo',           s:'¿Conoces un campo en Bizkaia o Cantabria que encaje con FS? Cuéntanos y lo valoramos.' },
       };
@@ -3495,7 +3392,7 @@
         }
 
       } else if (tab === 'desafios') {
-        const laredoOk = app.partidos.filter(p => p.apuntado && p.ciudad === 'Laredo').length;
+        const mayonaOk = app.partidos.filter(p => p.apuntado && p.ciudad === 'Mayona').length;
         const _dZap   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
         const _dPin   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>`;
         const _dUsers = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
@@ -3503,8 +3400,8 @@
         const ds = [
           { ico:_dZap,   t:'Jugador habitual', d:'Juega 3 partidos este mes',
             prog: Math.min(partidosJugados, 3), meta: 3, premio:'1 ficha gratis' },
-          { ico:_dPin,   t:'Playero',          d:'Apúntate a un partido en Laredo',
-            prog: Math.min(laredoOk, 1),       meta: 1, premio:'Badge exclusivo' },
+          { ico:_dPin,   t:'Explorador',        d:'Apúntate a un partido en Mayona',
+            prog: Math.min(mayonaOk, 1),       meta: 1, premio:'Badge exclusivo' },
           { ico:_dUsers, t:'Embajador',        d:'Invita a un amigo con tu código',
             prog: 0,                           meta: 1, premio:'1 ficha + badge',
             accion:"setPerfilTab('referidos')", accionTxt:'Ver mi código' },
@@ -3785,7 +3682,7 @@
 
     /* ==================== ARRANQUE ==================== */
     /* ── Hash routing: secciones secundarias como "páginas" ── */
-    const SECS_HOME    = ['inicio', 'que-ofrecemos', 'partidos', 'como-funciona', 'campos'];
+    const SECS_HOME    = ['inicio', 'que-ofrecemos', 'partidos', 'como-funciona'];
     const SECS_PAGINA  = ['faq', 'clasificacion', 'torneos', 'alquiler', 'creditos', 'aviso-legal', 'privacidad', 'cookies'];
 
     function manejarHash() {
